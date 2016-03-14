@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter">Войти</string>
+    <string name="login">Имя пользователя</string>
+    <string name="password">Пароль</string>
+    <string name="remember_me">Запомнить меня</string>
+    <string name="choice_what_to_add">Выберете тип заметки:</string>
+    <string name="choice_1">Дата</string>
+    <string name="choice_2">Перевод</string>
+    <string name="choice_3">Определение</string>
+    <string name="word">Введите слово для запоминания:</string>
+    <string name="register">или регистриация, если вы тут впервые</string>
+    <string name="to_reg">Зарегистрироваться</string>
+    <string name="password_twice">Пароль (дважды)</string>
+</resources>
