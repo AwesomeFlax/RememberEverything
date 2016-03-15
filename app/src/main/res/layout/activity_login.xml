@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/passEdit1"
+        android:id="@+id/passEdit"
         android:layout_below="@+id/passView"
         android:layout_centerHorizontal="true"
         android:textAlignment="center" />
@@ -53,9 +53,40 @@
         android:layout_height="wrap_content"
         android:text="@string/remember_me"
         android:id="@+id/checkBox"
-        android:layout_below="@+id/passEdit1"
+        android:layout_below="@+id/passEdit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="@string/enter"
+            android:id="@+id/enterButton"
+            android:onClick="toLogin" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="G+"
+            android:id="@+id/GPlus" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VK"
+            android:id="@+id/VK" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
@@ -63,16 +94,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/checkBox"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp">
-
-        <Button
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:text="@string/enter"
-            android:id="@+id/enterButton"
-            android:onClick="toLogin"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="center" />
+        android:layout_marginTop="60dp"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,7 +103,7 @@
             android:text="@string/register"
             android:id="@+id/textView2"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:textSize="15sp"
             android:textColor="#1A0DAB"
             android:clickable="true"

@@ -42,7 +42,7 @@ public class RegisterActivity extends Activity
         StrictMode.setThreadPolicy(policy);
 
         login = (EditText) findViewById(R.id.loginEdit);
-        password_1 = (EditText) findViewById(R.id.passEdit1);
+        password_1 = (EditText) findViewById(R.id.passEdit);
         password_2 = (EditText) findViewById(R.id.passEdit2);
         register = (Button) findViewById(R.id.registerButton);
 
