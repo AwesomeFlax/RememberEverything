@@ -15,4 +15,7 @@
     <string name="choice_3">Definition</string>
     <string name="word">Typer your word to remember:</string>
 
+    <string name="reg_success">Registration successful!</string>
+    <string name="used_name">That login is used already</string>
+    <string name="reg_alert">Make sure that passwords are the same!</string>
 </resources>

@@ -12,4 +12,7 @@
     <string name="register">или регистриация, если вы тут впервые</string>
     <string name="to_reg">Зарегистрироваться</string>
     <string name="password_twice">Пароль (дважды)</string>
+    <string name="reg_alert">Удебитесь, что пароли одинаковые!</string>
+    <string name="reg_success">Регистрация прошла успешно!</string>
+    <string name="used_name">Это имя пользователя уже используется</string>
 </resources>
