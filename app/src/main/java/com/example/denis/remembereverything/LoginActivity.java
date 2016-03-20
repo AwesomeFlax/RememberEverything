@@ -8,7 +8,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -27,13 +29,15 @@ import java.util.ArrayList;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.MessageDigest;
 
 
 public class LoginActivity extends Activity
 {
     EditText login;
     EditText password;
-    boolean enterAllowed = false;
+    Intent intent;
+    Button enter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +47,9 @@ public class LoginActivity extends Activity
 
         login = (EditText) findViewById(R.id.loginEdit);
         password = (EditText) findViewById(R.id.passEdit);
+
+        intent = new Intent(this, AddActivity.class);
+        enter = (Button) findViewById(R.id.enterButton);
     }
 
     //отдельный поток для проверки пары логин-пароль
@@ -51,7 +58,6 @@ public class LoginActivity extends Activity
         private ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
         InputStream is = null ;
         String result = "";
-
 
         @Override
         protected Void doInBackground(String... params)
@@ -110,7 +116,6 @@ public class LoginActivity extends Activity
                     JSONObject Jasonobject;
                     Jasonobject = Jarray.getJSONObject(i);
 
-                    //get an output on the screen
                     String name = Jasonobject.getString("login");
                     String db_detail;
 
@@ -120,10 +125,12 @@ public class LoginActivity extends Activity
                         MD5 md5 = new MD5();
                         pass = md5.getHash(pass);
 
+                        //login.setText(pass.toString());
                         db_detail = Jasonobject.getString("password");
 
-                        if (pass.equals(db_detail))
-                            enterAllowed = true;
+                        if (pass.equals(db_detail)) {
+                            startActivity(intent);
+                        }
 
                         break;
                     }
@@ -141,27 +148,19 @@ public class LoginActivity extends Activity
 
     public class MD5
     {
-        public String getHash(String str)
+        public String getHash(String str) throws NoSuchAlgorithmException
         {
-            MessageDigest md5;
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+
+            byte byteData[] = md.digest();
+
+            //convert the byte to hex format
             StringBuilder hexString = new StringBuilder();
-
-            try
-            {
-                md5 = MessageDigest.getInstance("md5");
-
-                md5.reset();
-                md5.update(str.getBytes());
-
-                byte messageDigest[] = md5.digest();
-
-                for (byte aMessageDigest : messageDigest)
-                    hexString.append(Integer.toHexString(0xFF & aMessageDigest));
-
-            }
-            catch (NoSuchAlgorithmException e)
-            {
-                return e.toString();
+            for (byte aByteData : byteData) {
+                String hex = Integer.toHexString(0xff & aByteData);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
             }
 
             return hexString.toString();
@@ -172,12 +171,6 @@ public class LoginActivity extends Activity
     public void toLogin(View v)
     {
         new task().execute();
-
-        if (enterAllowed)
-        {
-            Intent intent = new Intent(this, AddActivity.class);
-            startActivity(intent);
-        }
     }
 
     //кнопка "Регистрация"
