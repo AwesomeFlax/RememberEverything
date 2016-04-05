@@ -7,13 +7,18 @@
     <string name="password_twice">Password (twice)</string>
     <string name="remember_me">Remember me</string>
     <string name="register">or register, if you are new here</string>
+    <string name="success_login">Log in successful!</string>
     <string name="to_reg">Register</string>
 
     <string name="choice_what_to_add">Select the note type:</string>
     <string name="choice_1">Date</string>
     <string name="choice_2">Translate</string>
     <string name="choice_3">Definition</string>
-    <string name="word">Typer your word to remember:</string>
+    <string name="word">Type your word to remember:</string>
+    <string name="date">Type your date to remember:</string>
+
+    <string name="hint_word">Term place</string>
+    <string name="hint_def">Enter term definition here</string>
 
     <string name="reg_success">Registration successful!</string>
     <string name="used_name">That login is used already</string>

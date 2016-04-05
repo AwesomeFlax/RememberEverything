@@ -15,4 +15,8 @@
     <string name="reg_alert">Удебитесь, что пароли одинаковые!</string>
     <string name="reg_success">Регистрация прошла успешно!</string>
     <string name="used_name">Это имя пользователя уже используется</string>
+    <string name="date">Введите дату для запоминания</string>
+    <string name="hint_def">Введите определение термина сюда</string>
+    <string name="hint_word">Место для термина</string>
+    <string name="success_login">Авторизация успешна</string>
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="choice_1">Дата</string>
+    <string name="choice_2">Переклад</string>
+    <string name="choice_3">Пояснення</string>
+    <string name="choice_what_to_add">Оберіть тип запису:</string>
+    <string name="date">Оберть дату до запам\'ятання:</string>
+    <string name="enter">Увійти</string>
+    <string name="hint_def">Введіть визнечення терміну</string>
+    <string name="hint_word">Місце для терміну</string>
+    <string name="login">Ім\'я користувача</string>
+    <string name="password">Пароль</string>
+    <string name="password_twice">Пароль (двічі)</string>
+    <string name="reg_alert">Переконайтесь, що паролі однакові!</string>
+    <string name="reg_success">Реєстрація пройшла успішно!</string>
+    <string name="register">або реєстрація, якщо ви тут вперше</string>
+    <string name="remember_me">Запам\'ятати мене</string>
+    <string name="success_login">Авторизація успішна</string>
+    <string name="to_reg">Зареєструватися</string>
+    <string name="used_name">Це ім\'я користувача вже використовується</string>
+    <string name="word">Введіть слово до запам\'ятання:</string>
+</resources>

@@ -34,7 +34,8 @@ public class RegisterActivity extends Activity
     EditText password_2;
     Button register;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
 
@@ -76,20 +77,17 @@ public class RegisterActivity extends Activity
 
                         String msg = getResources().getString(R.string.reg_success);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-                    }
-                    catch (IOException e)
+                    } catch (IOException e)
                     {
                         e.printStackTrace();
                     }
-                }
-                else
+                } else
                 {
                     if (used_name)
                     {
                         String msg = getResources().getString(R.string.used_name);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-                    }
-                    else
+                    } else
                     {
                         String msg = getResources().getString(R.string.reg_alert);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
@@ -99,9 +97,9 @@ public class RegisterActivity extends Activity
         });
     }
 
-    public boolean checkNameAvailable (String user)
+    public boolean checkNameAvailable(String user)
     {
-        InputStream is = null ;
+        InputStream is = null;
         String result = "";
         boolean matches = false;
 
@@ -120,7 +118,7 @@ public class RegisterActivity extends Activity
             HttpEntity httpEntity = httpResponse.getEntity();
 
             //read content
-            is =  httpEntity.getContent();
+            is = httpEntity.getContent();
         }
         catch (Exception e)
         {
@@ -132,23 +130,22 @@ public class RegisterActivity extends Activity
             StringBuilder sb = new StringBuilder();
             String line;
 
-            while((line = br.readLine())!= null)
+            while ((line = br.readLine()) != null)
                 sb.append(line).append("\n");
 
             is.close();
             result = sb.toString();
 
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             // TODO: handle exception
-            Log.e("log_tag", "Error parsing data "+e.toString());
+            Log.e("log_tag", "Error parsing data " + e.toString());
         }
 
         try
         {
             JSONArray Jarray = new JSONArray(result);
-            for(int i = 0; i < Jarray.length(); i++)
+            for (int i = 0; i < Jarray.length(); i++)
             {
                 JSONObject Jasonobject;
                 Jasonobject = Jarray.getJSONObject(i);
@@ -158,11 +155,10 @@ public class RegisterActivity extends Activity
                 if (name.equals(user))
                     matches = true;
             }
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             // TODO: handle exception
-            Log.e("log_tag", "Error! "+e.toString());
+            Log.e("log_tag", "Error! " + e.toString());
         }
 
         return matches;

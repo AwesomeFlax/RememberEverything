@@ -5,11 +5,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-public class AddActivity extends Activity {
+public class AddActivity extends Activity
+{
+    TextView inform;
+    EditText term;
+
+    EditText definition;
+    DatePicker date;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
@@ -27,28 +39,68 @@ public class AddActivity extends Activity {
         spinner.setOnItemSelectedListener(makeYourChoice);
     }
 
-        //действие на выбор элемента
-        AdapterView.OnItemSelectedListener makeYourChoice = new AdapterView.OnItemSelectedListener()
+    void hideMaterials()
+    {
+        inform = (TextView) findViewById(R.id.wordView);
+        term = (EditText) findViewById(R.id.wordText);
+        definition = (EditText) findViewById(R.id.defText);
+        date = (DatePicker) findViewById(R.id.datePicker);
+
+        inform.setVisibility(View.INVISIBLE);
+        term.setVisibility(View.INVISIBLE);
+        definition.setVisibility(View.INVISIBLE);
+        date.setVisibility(View.INVISIBLE);
+    }
+
+    //действие на выбор элемента
+    AdapterView.OnItemSelectedListener makeYourChoice = new AdapterView.OnItemSelectedListener()
+    {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
         {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0: {
+            switch (position)
+            {
+                case 2:
+                {
+                    hideMaterials();
 
-                        break;
-                    }
-                    case 1: {
+                    inform = (TextView) findViewById(R.id.wordView);
+                    term = (EditText) findViewById(R.id.wordText);
+                    definition = (EditText) findViewById(R.id.defText);
 
-                        break;
-                    }
-                    case 2: {
+                    inform.setVisibility(View.VISIBLE);
+                    term.setVisibility(View.VISIBLE);
+                    definition.setVisibility(View.VISIBLE);
 
-                        break;
-                    }
+                    break;
+                }
+                case 0:
+                {
+                    hideMaterials();
+
+                    inform = (TextView) findViewById(R.id.wordView);
+                    term = (EditText) findViewById(R.id.wordText);
+                    date = (DatePicker) findViewById(R.id.datePicker);
+                    inform.setText(getResources().getString(R.string.date));
+
+                    inform.setVisibility(View.VISIBLE);
+                    term.setVisibility(View.VISIBLE);
+                    date.setVisibility(View.VISIBLE);
+
+                    break;
+                }
+                case 1:
+                {
+                    hideMaterials();
+
+                    break;
                 }
             }
+        }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
-        };
+        @Override
+        public void onNothingSelected(AdapterView<?> parent)
+        {
+        }
+    };
 }

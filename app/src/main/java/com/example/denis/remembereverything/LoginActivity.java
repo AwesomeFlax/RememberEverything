@@ -1,14 +1,11 @@
 package com.example.denis.remembereverything;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,7 +26,6 @@ import java.util.ArrayList;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.MessageDigest;
 
 
 public class LoginActivity extends Activity
@@ -37,7 +33,6 @@ public class LoginActivity extends Activity
     EditText login;
     EditText password;
     Intent intent;
-    Button enter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,16 +44,15 @@ public class LoginActivity extends Activity
         password = (EditText) findViewById(R.id.passEdit);
 
         intent = new Intent(this, AddActivity.class);
-        enter = (Button) findViewById(R.id.enterButton);
     }
 
     //отдельный поток для проверки пары логин-пароль
     class task extends AsyncTask<String, String, Void>
     {
-        private ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
-        InputStream is = null ;
+        InputStream is = null;
         String result = "";
 
+        //получение данных (если я правильно понимаю)
         @Override
         protected Void doInBackground(String... params)
         {
@@ -77,10 +71,9 @@ public class LoginActivity extends Activity
                 HttpEntity httpEntity = httpResponse.getEntity();
 
                 //read content
-                is =  httpEntity.getContent();
+                is = httpEntity.getContent();
 
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -89,29 +82,29 @@ public class LoginActivity extends Activity
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 StringBuilder sb = new StringBuilder();
                 String line;
-                while((line = br.readLine()) != null)
+                while ((line = br.readLine()) != null)
                 {
                     sb.append(line).append("\n");
                 }
                 is.close();
                 result = sb.toString();
 
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 // TODO: handle exception
-                Log.e("log_tag", "Error parsing data "+e.toString());
+                Log.e("log_tag", "Error parsing data " + e.toString());
             }
 
             return null;
         }
 
+        //обработка данных
         protected void onPostExecute(Void v)
         {
             try
             {
                 JSONArray Jarray = new JSONArray(result);
-                for(int i = 0; i < Jarray.length(); i++)
+                for (int i = 0; i < Jarray.length(); i++)
                 {
                     JSONObject Jasonobject;
                     Jasonobject = Jarray.getJSONObject(i);
@@ -119,7 +112,7 @@ public class LoginActivity extends Activity
                     String name = Jasonobject.getString("login");
                     String db_detail;
 
-                    if(login.getText().toString().equalsIgnoreCase(name))
+                    if (login.getText().toString().equalsIgnoreCase(name))
                     {
                         String pass = password.getText().toString();
                         MD5 md5 = new MD5();
@@ -128,24 +121,24 @@ public class LoginActivity extends Activity
                         //login.setText(pass.toString());
                         db_detail = Jasonobject.getString("password");
 
-                        if (pass.equals(db_detail)) {
+                        if (pass.equals(db_detail))
+                        {
+                            String msg = getResources().getString(R.string.success_login);
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                             startActivity(intent);
                         }
-
                         break;
                     }
                 }
-                this.progressDialog.dismiss();
-
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 // TODO: handle exception
-                Log.e("log_tag", "Error! "+e.toString());
+                Log.e("log_tag", "Error! " + e.toString());
             }
         }
     }
 
+    //класс для MD5 хэширования пароля
     public class MD5
     {
         public String getHash(String str) throws NoSuchAlgorithmException
@@ -157,7 +150,8 @@ public class LoginActivity extends Activity
 
             //convert the byte to hex format
             StringBuilder hexString = new StringBuilder();
-            for (byte aByteData : byteData) {
+            for (byte aByteData : byteData)
+            {
                 String hex = Integer.toHexString(0xff & aByteData);
                 if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
@@ -174,7 +168,8 @@ public class LoginActivity extends Activity
     }
 
     //кнопка "Регистрация"
-    public void toRegister(View v) {
+    public void toRegister(View v)
+    {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

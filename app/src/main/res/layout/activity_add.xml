@@ -10,7 +10,8 @@
         android:id="@+id/choiceView"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textColor="#2c2020"/>
 
     <Spinner
         android:layout_width="280dp"
@@ -25,16 +26,40 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/word"
         android:id="@+id/wordView"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="#2c2020"
+        android:visibility="invisible"/>
 
     <EditText
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:id="@+id/wordText"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:hint="@string/hint_word"
+        android:visibility="visible"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:ems="10"
+        android:id="@+id/defText"
+        android:gravity="top"
+        android:hint="@string/hint_def"
+        android:layout_margin="10dp"
+        android:visibility="invisible"
+        android:inputType="text"/>
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-200dp"
+        android:visibility="visible"
+        android:calendarViewShown="true"/>
 
 </LinearLayout>
