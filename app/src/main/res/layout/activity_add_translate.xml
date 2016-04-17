@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +22,7 @@
         android:spinnerMode="dropdown"
         android:textAlignment="center"
         android:layout_marginTop="20dp"
-        android:contextClickable="false" />
+        android:contextClickable="false"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +32,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:textColor="#2c2020"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <EditText
         android:layout_width="320dp"
@@ -42,24 +43,12 @@
         android:hint="@string/hint_word"
         android:visibility="visible"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:ems="10"
-        android:id="@+id/defText"
-        android:gravity="top"
-        android:hint="@string/hint_def"
-        android:layout_margin="10dp"
-        android:visibility="invisible"
-        android:inputType="text"/>
-
-    <DatePicker
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
+        android:text="New Button"
+        android:id="@+id/button"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-200dp"
-        android:visibility="visible"
-        android:calendarViewShown="true"/>
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

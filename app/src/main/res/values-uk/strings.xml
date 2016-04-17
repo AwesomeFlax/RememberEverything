@@ -19,4 +19,5 @@
     <string name="to_reg">Зареєструватися</string>
     <string name="used_name">Це ім\'я користувача вже використовується</string>
     <string name="word">Введіть слово до запам\'ятання:</string>
+    <string name="period">Ввести період між двома датами</string>
 </resources>

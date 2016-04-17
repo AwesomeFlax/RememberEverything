@@ -19,4 +19,5 @@
     <string name="hint_def">Введите определение термина сюда</string>
     <string name="hint_word">Место для термина</string>
     <string name="success_login">Авторизация успешна</string>
+    <string name="period">Ввести период между двумя датами</string>
 </resources>

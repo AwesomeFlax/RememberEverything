@@ -43,7 +43,7 @@ public class LoginActivity extends Activity
         login = (EditText) findViewById(R.id.loginEdit);
         password = (EditText) findViewById(R.id.passEdit);
 
-        intent = new Intent(this, AddActivity.class);
+        intent = new Intent(this, AddActivity_Date.class);
     }
 
     //отдельный поток для проверки пары логин-пароль
