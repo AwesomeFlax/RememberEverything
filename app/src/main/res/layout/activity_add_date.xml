@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:visibility="visible"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="30dp">
 
         <EditText
             android:layout_width="50dp"
@@ -103,14 +103,16 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/day_2"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
             android:id="@+id/sep_3"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:visibility="invisible"/>
 
         <EditText
             android:layout_width="50dp"
@@ -118,22 +120,25 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/month_2"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
             android:id="@+id/sep_4"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:visibility="invisible"/>
 
         <EditText
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/year_3"
-            android:textSize="30sp"/>
+            android:id="@+id/year_2"
+            android:textSize="30sp"
+            android:visibility="invisible"/>
     </LinearLayout>
 
     <CheckBox
@@ -143,14 +148,15 @@
         android:id="@+id/period_box"
         android:layout_gravity="center_horizontal"
         android:checked="false"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="20dp"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"/>
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="47dp"/>
 
 </LinearLayout>

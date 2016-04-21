@@ -6,21 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class AddActivity_Translate extends Activity
 {
-    TextView inform;
-    EditText term;
-
-    EditText definition;
-    ListView date;
-
-    int hotFix = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -31,7 +20,7 @@ public class AddActivity_Translate extends Activity
         String[] data = {getString(R.string.choice_1), getString(R.string.choice_2), getString(R.string.choice_3)};
 
         // адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //найстройки спиннера
