@@ -2,11 +2,15 @@ package com.example.denis.remembereverything;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -26,6 +30,7 @@ import java.util.ArrayList;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.zip.CheckedInputStream;
 
 
 public class LoginActivity extends Activity
@@ -34,17 +39,74 @@ public class LoginActivity extends Activity
     EditText password;
     Intent intent;
 
+    SharedPreferences sPref;
+    CheckBox checkBox;
+
+    boolean to_load = false;
+    String user_data = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
         login = (EditText) findViewById(R.id.loginEdit);
         password = (EditText) findViewById(R.id.passEdit);
 
         intent = new Intent(this, AddActivity_Date.class);
+
+        //подгрузка shared preferences
+        loadText();
     }
+
+    //сохранение данных пользователя
+    void saveText()
+    {
+        if (checkBox.isChecked())
+        {
+            sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+
+            String temp = login.getText().toString() + ":" + password.getText().toString();
+
+            SharedPreferences.Editor ed = sPref.edit();
+
+            ed.putString("user_data", temp);
+
+            if (checkBox.isChecked())
+                ed.putBoolean("to_load", true);
+            else
+                ed.putBoolean("to_load", false);
+            ed.apply();
+        }
+    }
+
+    //загрузка данных пользователя
+    void loadText()
+    {
+        sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+
+        user_data = sPref.getString("user_data", ":");
+
+        String[] temp = user_data.split(":");
+
+        if (user_data.isEmpty())
+        {
+            temp[0] = "";
+            temp[1] = "";
+        }
+
+        to_load = sPref.getBoolean("to_load", false);
+
+        if (to_load)
+        {
+            checkBox.setChecked(true);
+            login.setText(temp[0]);
+            password.setText(temp[1]);
+        }
+    }
+
 
     //отдельный поток для проверки пары логин-пароль
     class task extends AsyncTask<String, String, Void>
@@ -123,6 +185,7 @@ public class LoginActivity extends Activity
 
                         if (pass.equals(db_detail))
                         {
+                            saveText();
                             String msg = getResources().getString(R.string.success_login);
                             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                             startActivity(intent);

@@ -36,7 +36,7 @@ public class AddActivity_Date extends Activity
         spinner.setOnItemSelectedListener(makeYourChoice);
 
         period = (CheckBox) findViewById(R.id.period_box);
-        period.setOnCheckedChangeListener(new myCheckBoxChnageClicker());
+        period.setOnCheckedChangeListener(new myCheckBoxChangeClicker());
     }
 
     //действие на выбор элемента
@@ -74,7 +74,7 @@ public class AddActivity_Date extends Activity
         }
     };
 
-    class myCheckBoxChnageClicker implements CheckBox.OnCheckedChangeListener
+    class myCheckBoxChangeClicker implements CheckBox.OnCheckedChangeListener
     {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
