@@ -52,12 +52,14 @@
         android:layout_marginTop="30dp">
 
         <EditText
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/day"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            android:maxLength="2"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,12 +69,14 @@
             android:textSize="30sp"/>
 
         <EditText
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/month"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            android:maxLength="2"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -82,12 +86,14 @@
             android:textSize="30sp"/>
 
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/year"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            android:maxLength="4"/>
     </LinearLayout>
 
     <LinearLayout
@@ -98,13 +104,15 @@
         android:visibility="visible">
 
         <EditText
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/day_2"
             android:textSize="30sp"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:maxLength="2"
+            android:gravity="center_horizontal"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -115,13 +123,15 @@
             android:visibility="invisible"/>
 
         <EditText
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/month_2"
             android:textSize="30sp"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:maxLength="2"
+            android:gravity="center_horizontal"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -132,13 +142,15 @@
             android:visibility="invisible"/>
 
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/year_2"
             android:textSize="30sp"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:maxLength="4"
+            android:gravity="center_horizontal"/>
     </LinearLayout>
 
     <CheckBox
@@ -154,9 +166,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
+        android:id="@+id/send_data"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginTop="47dp"/>
+        android:layout_marginTop="47dp"
+        android:text="@string/remember_it"/>
 
 </LinearLayout>

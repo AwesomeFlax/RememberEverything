@@ -20,4 +20,6 @@
     <string name="hint_word">Место для термина</string>
     <string name="success_login">Авторизация успешна</string>
     <string name="period">Ввести период между двумя датами</string>
+    <string name="remember_it">Запомнить</string>
+    <string name="date_add">Дата была успешно сохранена</string>
 </resources>

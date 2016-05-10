@@ -20,8 +20,11 @@
 
     <string name="hint_word">Term place</string>
     <string name="hint_def">Enter term definition here</string>
+    <string name="remember_it">Remember it</string>
 
     <string name="reg_success">Registration successful!</string>
     <string name="used_name">That login is used already</string>
     <string name="reg_alert">Make sure that passwords are the same!</string>
+
+    <string name="date_add">Date was successfully added</string>
 </resources>

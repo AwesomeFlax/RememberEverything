@@ -188,6 +188,8 @@ public class LoginActivity extends Activity
                             saveText();
                             String msg = getResources().getString(R.string.success_login);
                             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+
+                            intent.putExtra("name", login.getText().toString());
                             startActivity(intent);
                         }
                         break;
