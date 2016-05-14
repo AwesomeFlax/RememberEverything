@@ -18,7 +18,8 @@
     <string name="date">Type your date to remember:</string>
     <string name="period">Enter period between 2 dates</string>
 
-    <string name="hint_word">Term place</string>
+    <string name="hint_term">Term place</string>
+    <string name="hint_word">Word place</string>
     <string name="hint_def">Enter term definition here</string>
     <string name="remember_it">Remember it</string>
 
@@ -27,4 +28,37 @@
     <string name="reg_alert">Make sure that passwords are the same!</string>
 
     <string name="date_add">Date was successfully added</string>
+    <string name="def_add">Definition was successfully added</string>
+    <string name="translate_add">Translate was successfully added</string>
+
+    <string name="translate">Translate</string>
+    <string name="add_to_DB">Save</string>
+
+    <string name="french">french</string>
+    <string name="czech">czech</string>
+    <string name="ukrainian">ukrainian</string>
+    <string name="spanish">spanish</string>
+    <string name="italian">italian</string>
+    <string name="german">german</string>
+    <string name="polish">polish</string>
+    <string name="english">english</string>
+    <string name="swedish">swedish</string>
+    <string name="russian">russian</string>
+
+    <string name="_french">french</string>
+    <string name="_czech">czech</string>
+    <string name="_ukrainian">ukrainian</string>
+    <string name="_spanish">spanish</string>
+    <string name="_italian">italian</string>
+    <string name="_german">german</string>
+    <string name="_polish">polish</string>
+    <string name="_english">english</string>
+    <string name="_swedish">swedish</string>
+    <string name="_russian">russian</string>
+
+    <string name="from">From</string>
+    <string name="to">to</string>
+    <string name="language">language</string>
+    <string name="_language">language</string>
+    <string name="result">Translate</string>
 </resources>

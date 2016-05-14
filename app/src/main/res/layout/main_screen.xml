@@ -29,8 +29,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="galery"
-        android:id="@+id/galery"
+        android:text="gallery"
+        android:id="@+id/gallery"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tests"
+        android:id="@+id/test"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

@@ -19,7 +19,7 @@
         android:text="@string/word"
         android:id="@+id/wordView"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:textColor="#2c2020"
         android:visibility="visible"/>
 
@@ -30,219 +30,210 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:hint="@string/hint_word"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        android:gravity="center_horizontal"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="5dp">
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
-            android:id="@+id/Belarus"
-            android:background="@drawable/belarus"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"/>
+            android:id="@+id/Spain"
+            android:background="@drawable/spain"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/Czech"
             android:background="@drawable/czechrepublic"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignBottom="@+id/Belarus"
-            android:layout_toEndOf="@+id/Poland"/>
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/Spain"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/France"
             android:background="@drawable/france"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignTop="@+id/Germany"
-            android:layout_toEndOf="@+id/Poland"/>
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/Czech"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/Germany"
             android:background="@drawable/germany"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignTop="@+id/_Germany"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/France"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/Russia"
             android:background="@drawable/russia"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Germany"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/Germany"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/Italy"
             android:background="@drawable/italy"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignTop="@+id/Russia"
-            android:layout_toEndOf="@+id/Poland"/>
+            android:layout_below="@+id/Spain"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/Sweden"
             android:background="@drawable/sweden"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Russia"
-            android:layout_alignParentStart="true"/>
+            android:layout_below="@+id/Czech"
+            android:layout_toStartOf="@+id/France"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/Ukraine"
-            android:layout_marginLeft="2dp"
             android:background="@drawable/ukraine"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Italy"
-            android:layout_toEndOf="@+id/Poland"/>
+            android:layout_below="@+id/France"
+            android:layout_alignStart="@+id/France"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/Poland"
             android:background="@drawable/poland"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Sweden"
-            android:layout_alignParentStart="true"/>
+            android:layout_below="@+id/Germany"
+            android:layout_toEndOf="@+id/Ukraine"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/USA"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Ukraine"
-            android:layout_toEndOf="@+id/Sweden"
-            android:background="@drawable/unitedstates"/>
+            android:background="@drawable/unitedstates"
+            android:layout_below="@+id/Russia"
+            android:layout_toEndOf="@+id/Poland"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
-            android:id="@+id/_Belarus"
-            android:background="@drawable/belarus"
-            android:layout_marginRight="2dp"
-            android:layout_alignTop="@+id/_Czech"
-            android:layout_alignStart="@+id/_Germany"/>
+            android:id="@+id/_Spain"
+            android:background="@drawable/spain"
+            android:layout_below="@+id/Italy"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/_Czech"
             android:background="@drawable/czechrepublic"
-            android:layout_marginLeft="210dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignBottom="@+id/Belarus"
-            android:layout_toEndOf="@+id/Poland"/>
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:id="@+id/_France"
-            android:background="@drawable/france"
-            android:layout_marginLeft="210dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignTop="@+id/Germany"
-            android:layout_toEndOf="@+id/Poland"/>
+            android:layout_alignTop="@+id/_Spain"
+            android:layout_toEndOf="@+id/Italy"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/_Germany"
             android:background="@drawable/germany"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Belarus"
-            android:layout_alignStart="@+id/_Russia"/>
+            android:layout_alignTop="@+id/_France"
+            android:layout_toEndOf="@+id/Ukraine"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/_Russia"
             android:background="@drawable/russia"
-            android:layout_marginLeft="210dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Germany"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignTop="@+id/_Germany"
+            android:layout_toEndOf="@+id/Poland"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/_Italy"
             android:background="@drawable/italy"
-            android:layout_marginLeft="210dp"
-            android:layout_marginRight="2dp"
-            android:layout_alignTop="@+id/Russia"
-            android:layout_toEndOf="@+id/Poland"/>
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:id="@+id/_Sweden"
-            android:background="@drawable/sweden"
-            android:layout_marginLeft="210dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Russia"
-            android:layout_alignParentStart="true"/>
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:id="@+id/_Ukraine"
-            android:layout_marginLeft="210dp"
-            android:background="@drawable/ukraine"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Italy"
-            android:layout_toEndOf="@+id/Poland"/>
+            android:layout_below="@+id/_Spain"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/_Poland"
             android:background="@drawable/poland"
-            android:layout_marginLeft="210dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Sweden"
-            android:layout_alignParentStart="true"/>
+            android:layout_below="@+id/_Germany"
+            android:layout_toEndOf="@+id/_Ukraine"
+            android:layout_marginRight="6dp"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:id="@+id/_Ukraine"
+            android:background="@drawable/ukraine"
+            android:layout_below="@+id/_Germany"
+            android:layout_toEndOf="@+id/_Sweden"
+            android:layout_marginRight="6dp"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/_USA"
             android:background="@drawable/unitedstates"
-            android:layout_marginLeft="210dp"
-            android:layout_marginRight="2dp"
-            android:layout_below="@+id/Ukraine"
-            android:layout_toEndOf="@+id/Sweden"/>
+            android:layout_below="@+id/_Germany"
+            android:layout_toEndOf="@+id/_Germany"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:id="@+id/_France"
+            android:background="@drawable/france"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignTop="@+id/_Czech"
+            android:layout_toEndOf="@+id/Sweden"
+            android:layout_marginRight="6dp"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:id="@+id/_Sweden"
+            android:background="@drawable/sweden"
+            android:layout_below="@+id/_Czech"
+            android:layout_toEndOf="@+id/_Spain"
+            android:layout_marginRight="6dp"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/translate_info"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"/>
+
     </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="result"
-        android:id="@+id/textView"
+        android:text="@string/result"
+        android:id="@+id/result"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:textSize="25dp"/>
@@ -250,7 +241,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/translate"
         android:id="@+id/send"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"/>

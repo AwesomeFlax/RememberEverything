@@ -29,8 +29,9 @@
         android:id="@+id/wordText"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:hint="@string/hint_word"
-        android:visibility="visible"/>
+        android:hint="@string/hint_term"
+        android:visibility="visible"
+        android:gravity="center_horizontal"/>
 
     <EditText
         android:layout_width="match_parent"

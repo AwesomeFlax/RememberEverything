@@ -31,7 +31,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:hint="@string/hint_word"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        android:gravity="center_horizontal"/>
 
     <LinearLayout
         android:orientation="horizontal"

@@ -53,22 +53,17 @@ public class AddActivity_Definition extends Activity
 
             String _term;
             String _definition;
-            String _name;
 
             @Override
             public void onClick(View arg0)
             {
-                _term = "" + term.getText().toString();
-                _definition = "" + definition.getText().toString();
-
-                //получение имени
-                Intent intent = getIntent();
-                _name = intent.getStringExtra("name");
+                _term = term.getText().toString();
+                _definition = definition.getText().toString();
 
                 List<NameValuePair> nameValuePairs = new ArrayList<>(1);
 
                 nameValuePairs.add(new BasicNameValuePair("term", _term));
-                nameValuePairs.add(new BasicNameValuePair("name", _name));
+                nameValuePairs.add(new BasicNameValuePair("name", user_name));
                 nameValuePairs.add(new BasicNameValuePair("definition", _definition));
 
                 try
@@ -80,7 +75,7 @@ public class AddActivity_Definition extends Activity
                     HttpEntity entity = response.getEntity();
                     is = entity.getContent();
 
-                    String msg = getResources().getString(R.string.date_add);
+                    String msg = getResources().getString(R.string.def_add);
                     Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                 } catch (IOException e)
                 {

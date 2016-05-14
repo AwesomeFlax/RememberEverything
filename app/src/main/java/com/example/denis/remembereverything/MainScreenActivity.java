@@ -23,13 +23,16 @@ public class MainScreenActivity extends Activity
         Button date = (Button) findViewById(R.id.date);
         Button note = (Button) findViewById(R.id.note);
         Button translate = (Button) findViewById(R.id.translate);
-        Button galery = (Button) findViewById(R.id.galery);
+        Button gallery = (Button) findViewById(R.id.gallery);
+        Button tests = (Button) findViewById(R.id.test);
 
         //обработчик на них
         translate.setOnClickListener(new CustomClickListener());
         note.setOnClickListener(new CustomClickListener());
         date.setOnClickListener(new CustomClickListener());
-        galery.setOnClickListener(new CustomClickListener());
+
+        gallery.setOnClickListener(new CustomClickListener());
+        tests.setOnClickListener(new CustomClickListener());
     }
 
     //реализация обработчика

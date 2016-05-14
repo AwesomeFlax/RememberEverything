@@ -73,20 +73,6 @@
             android:id="@+id/enterButton"
             android:onClick="toLogin" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="G+"
-            android:id="@+id/GPlus" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VK"
-            android:id="@+id/VK" />
-
     </LinearLayout>
 
     <LinearLayout
