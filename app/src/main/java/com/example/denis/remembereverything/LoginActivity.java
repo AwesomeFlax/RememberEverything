@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -30,8 +28,6 @@ import java.util.ArrayList;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.zip.CheckedInputStream;
-
 
 public class LoginActivity extends Activity
 {
@@ -55,7 +51,7 @@ public class LoginActivity extends Activity
         login = (EditText) findViewById(R.id.loginEdit);
         password = (EditText) findViewById(R.id.passEdit);
 
-        intent = new Intent(this, AddActivity_Date.class);
+        intent = new Intent(this, MainScreenActivity.class);
 
         //подгрузка shared preferences
         loadText();
@@ -107,7 +103,6 @@ public class LoginActivity extends Activity
         }
     }
 
-
     //отдельный поток для проверки пары логин-пароль
     class task extends AsyncTask<String, String, Void>
     {
@@ -143,6 +138,7 @@ public class LoginActivity extends Activity
             {
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 StringBuilder sb = new StringBuilder();
+
                 String line;
                 while ((line = br.readLine()) != null)
                 {

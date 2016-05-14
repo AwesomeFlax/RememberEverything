@@ -3,65 +3,98 @@ package com.example.denis.remembereverything;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddActivity_Definition extends Activity
 {
+    String user_name;
+    EditText term;
+    EditText definition;
+    Button send;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_definition);
 
-        //чем заполняется спиннер
-        String[] data = {getString(R.string.choice_1), getString(R.string.choice_2), getString(R.string.choice_3)};
+        Intent intent_prew = getIntent();
+        user_name = intent_prew.getStringExtra("name");
 
-        // адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //чтобы был доступ к сети
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-        //найстройки спиннера
-        Spinner spinner = (Spinner) findViewById(R.id.typeSpinner);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(2);
-        spinner.setOnItemSelectedListener(makeYourChoice);
-    }
+        term = (EditText) findViewById(R.id.wordText);
+        definition = (EditText) findViewById(R.id.defText);
+        send = (Button) findViewById(R.id.send);
 
-    //действие на выбор элемента
-    AdapterView.OnItemSelectedListener makeYourChoice = new AdapterView.OnItemSelectedListener()
-    {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        send.setOnClickListener(new View.OnClickListener()
         {
-            switch (position)
+            InputStream is = null;
+
+            String _term;
+            String _definition;
+            String _name;
+
+            @Override
+            public void onClick(View arg0)
             {
-                case 0:
-                {
-                    //сменить активити на "Дату"
-                    Intent intent = new Intent(AddActivity_Definition.this, AddActivity_Date.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                _term = "" + term.getText().toString();
+                _definition = "" + definition.getText().toString();
 
-                    break;
-                }
-                case 1:
-                {
-                    //сменить активити на "Перевод"
-                    Intent intent = new Intent(AddActivity_Definition.this, AddActivity_Translate.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                //получение имени
+                Intent intent = getIntent();
+                _name = intent.getStringExtra("name");
 
-                    break;
+                List<NameValuePair> nameValuePairs = new ArrayList<>(1);
+
+                nameValuePairs.add(new BasicNameValuePair("term", _term));
+                nameValuePairs.add(new BasicNameValuePair("name", _name));
+                nameValuePairs.add(new BasicNameValuePair("definition", _definition));
+
+                try
+                {
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost("http://remember-everything.ml/connections/add_def.php");
+                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    HttpResponse response = httpClient.execute(httpPost);
+                    HttpEntity entity = response.getEntity();
+                    is = entity.getContent();
+
+                    String msg = getResources().getString(R.string.date_add);
+                    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
                 }
             }
-        }
+        });
+    }
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parent)
-        {
-        }
-    };
+    public void getBack(View v)
+    {
+        Intent intent;
+        intent = new Intent(this, MainScreenActivity.class);
+        intent.putExtra("name", user_name);
+        startActivity(intent);
+    }
 }

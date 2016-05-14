@@ -26,6 +26,8 @@
 
         <activity android:name=".RegisterActivity"/>
 
+        <activity android:name=".MainScreenActivity"/>
+
     </application>
 
 </manifest>

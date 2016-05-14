@@ -62,7 +62,7 @@ public class RegisterActivity extends Activity
 
                 if (pass.equals(conf) && !used_name)
                 {
-                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+                    List<NameValuePair> nameValuePairs = new ArrayList<>(1);
                     nameValuePairs.add(new BasicNameValuePair("name", name));
                     nameValuePairs.add(new BasicNameValuePair("pass", pass));
 

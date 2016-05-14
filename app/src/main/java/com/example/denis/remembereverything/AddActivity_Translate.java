@@ -1,67 +1,37 @@
 package com.example.denis.remembereverything;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Button;
 
 public class AddActivity_Translate extends Activity
 {
+    String user_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_translate);
 
-        //чем заполняется спиннер
-        String[] data = {getString(R.string.choice_1), getString(R.string.choice_2), getString(R.string.choice_3)};
+        Intent intent_prew = getIntent();
+        user_name = intent_prew.getStringExtra("name");
 
-        // адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //найстройки спиннера
-        Spinner spinner = (Spinner) findViewById(R.id.typeSpinner);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(1);
-        spinner.setOnItemSelectedListener(makeYourChoice);
+        //чтобы был доступ к сети
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
-    //действие на выбор элемента
-    AdapterView.OnItemSelectedListener makeYourChoice = new AdapterView.OnItemSelectedListener()
+    public void getBack(View v)
     {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-        {
-            switch (position)
-            {
-                case 0:
-                {
-                    //сменить активити на "Дату"
-                    Intent intent = new Intent(AddActivity_Translate.this, AddActivity_Date.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-
-                    break;
-                }
-                case 2:
-                {
-                    //сменить активити на "Определение"
-                    Intent intent = new Intent(AddActivity_Translate.this, AddActivity_Definition.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-
-                    break;
-                }
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent)
-        {
-        }
-    };
+        Intent intent;
+        intent = new Intent(this, MainScreenActivity.class);
+        intent.putExtra("name", user_name);
+        startActivity(intent);
+    }
 }

@@ -47,6 +47,7 @@ public class AddActivity_Date extends Activity
     EditText year_2;
 
     boolean singleDate = true;
+    String user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,22 +55,12 @@ public class AddActivity_Date extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_date);
 
+        Intent intent = getIntent();
+        user_name = intent.getStringExtra("name");
+
         //чтобы был доступ к сети
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        //чем заполняется спиннер
-        String[] data = {getString(R.string.choice_1), getString(R.string.choice_2), getString(R.string.choice_3)};
-
-        // адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //найстройки спиннера
-        Spinner spinner = (Spinner) findViewById(R.id.typeSpinner);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(0);
-        spinner.setOnItemSelectedListener(makeYourChoice);
 
         //объекты
         period = (CheckBox) findViewById(R.id.period_box);
@@ -110,34 +101,30 @@ public class AddActivity_Date extends Activity
             {
                 term = "" + wordText.getText().toString();
 
-                _day1 = "" + day_1.getText().toString() + "";
-                _month1 = "" + month_1.getText().toString() + "";
-                _year1 = "" + year_1.getText().toString() + "";
+                _day1 = day_1.getText().toString();
+                _month1 = month_1.getText().toString();
+                _year1 = year_1.getText().toString();
 
                 if (singleDate)
                 {
                     period = "0";
 
-                    _day2 = "" + day_1.getText().toString() + "";
-                    _month2 = "" + month_1.getText().toString() + "";
-                    _year2 = "" + year_1.getText().toString() + "";
+                    _day2 = day_1.getText().toString();
+                    _month2 = month_1.getText().toString();
+                    _year2 = year_1.getText().toString();
                 } else
                 {
                     period = "1";
 
-                    _day2 = "" + day_2.getText().toString() + "";
-                    _month2 = "" + month_2.getText().toString() + "";
-                    _year2 = "" + year_2.getText().toString() + "";
+                    _day2 = day_2.getText().toString();
+                    _month2 = month_2.getText().toString();
+                    _year2 = year_2.getText().toString();
                 }
-
-                //получение имени
-                Intent intent = getIntent();
-                name = intent.getStringExtra("name");
 
                 List<NameValuePair> nameValuePairs = new ArrayList<>(1);
 
                 nameValuePairs.add(new BasicNameValuePair("term", term));
-                nameValuePairs.add(new BasicNameValuePair("name", name));
+                nameValuePairs.add(new BasicNameValuePair("name", user_name));
 
                 nameValuePairs.add(new BasicNameValuePair("day_1", _day1));
                 nameValuePairs.add(new BasicNameValuePair("month_1", _month1));
@@ -167,41 +154,6 @@ public class AddActivity_Date extends Activity
             }
         });
     }
-
-    //действие на выбор элемента
-    AdapterView.OnItemSelectedListener makeYourChoice = new AdapterView.OnItemSelectedListener()
-    {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-        {
-            switch (position)
-            {
-                case 1:
-                {
-                    //сменить активити на "Перевод"
-                    Intent intent = new Intent(AddActivity_Date.this, AddActivity_Translate.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-
-                    break;
-                }
-                case 2:
-                {
-                    //сменить активити на "Определение"
-                    Intent intent = new Intent(AddActivity_Date.this, AddActivity_Definition.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-
-                    break;
-                }
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent)
-        {
-        }
-    };
 
     class myCheckBoxChangeClicker implements CheckBox.OnCheckedChangeListener
     {
@@ -240,5 +192,13 @@ public class AddActivity_Date extends Activity
                 singleDate = true;
             }
         }
+    }
+
+    public void getBack(View v)
+    {
+        Intent intent;
+        intent = new Intent(this, MainScreenActivity.class);
+        intent.putExtra("name", user_name);
+        startActivity(intent);
     }
 }

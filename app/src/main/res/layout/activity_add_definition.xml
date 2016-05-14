@@ -4,25 +4,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/choice_what_to_add"
-        android:id="@+id/choiceView"
+        android:text="back"
+        android:id="@+id/back"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:textSize="20dp"
-        android:textColor="#2c2020"/>
-
-    <Spinner
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/typeSpinner"
-        android:layout_gravity="center"
-        android:spinnerMode="dropdown"
-        android:textAlignment="center"
-        android:layout_marginTop="20dp"
-        android:contextClickable="false"/>
+        android:onClick="getBack"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,16 +19,16 @@
         android:text="@string/word"
         android:id="@+id/wordView"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:textColor="#2c2020"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        android:layout_marginTop="50dp"/>
 
     <EditText
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:id="@+id/wordText"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:hint="@string/hint_word"
         android:visibility="visible"/>
 
@@ -58,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/remember_it"
-        android:id="@+id/button"
+        android:id="@+id/send"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"/>
 
