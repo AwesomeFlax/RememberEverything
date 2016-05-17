@@ -20,17 +20,16 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddActivity_Translate extends Activity
 {
@@ -42,6 +41,8 @@ public class AddActivity_Translate extends Activity
     TextView _result;
     String l_source = "";
     String l_target = "";
+    int id_source;
+    int id_target;
 
     String source;
     String target;
@@ -90,6 +91,7 @@ public class AddActivity_Translate extends Activity
 
         myText = (EditText) findViewById(R.id.wordText);
         _result = (TextView) findViewById(R.id.result);
+        mainButton = (Button) findViewById(R.id.send);
 
         //ловим эти замечательные кнопки
         Spain = (ImageButton) findViewById(R.id.Spain);
@@ -160,60 +162,90 @@ public class AddActivity_Translate extends Activity
                 {
                     source = getResources().getString(R.string.spanish);
                     l_source = "es";
+                    id_source = 0;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Ukraine:
                 {
                     source = getResources().getString(R.string.ukrainian);
                     l_source = "uk";
+                    id_source = 1;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Italy:
                 {
                     source = getResources().getString(R.string.italian);
                     l_source = "it";
+                    id_source = 2;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.France:
                 {
                     source = getResources().getString(R.string.french);
                     l_source = "fr";
+                    id_source = 3;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Germany:
                 {
                     source = getResources().getString(R.string.german);
                     l_source = "de";
+                    id_source = 4;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Russia:
                 {
                     source = getResources().getString(R.string.russian);
                     l_source = "ru";
+                    id_source = 5;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.USA:
                 {
                     source = getResources().getString(R.string.english);
                     l_source = "en";
+                    id_source = 6;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Poland:
                 {
                     source = getResources().getString(R.string.polish);
                     l_source = "pl";
+                    id_source = 7;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Sweden:
                 {
                     source = getResources().getString(R.string.swedish);
                     l_source = "sv";
+                    id_source = 8;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Czech:
                 {
                     source = getResources().getString(R.string.czech);
                     l_source = "cs";
+                    id_source = 9;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
 
@@ -221,60 +253,90 @@ public class AddActivity_Translate extends Activity
                 {
                     target = getResources().getString(R.string._spanish);
                     l_target = "es";
+                    id_target = 0;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Ukraine:
                 {
                     target = getResources().getString(R.string._ukrainian);
                     l_target = "uk";
+                    id_target = 1;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Italy:
                 {
                     target = getResources().getString(R.string._italian);
                     l_target = "it";
+                    id_target = 2;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._France:
                 {
                     target = getResources().getString(R.string._french);
                     l_target = "fr";
+                    id_target = 3;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Germany:
                 {
                     target = getResources().getString(R.string._german);
                     l_target = "de";
+                    id_target = 4;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Russia:
                 {
                     target = getResources().getString(R.string._russian);
                     l_target = "ru";
+                    id_target = 5;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._USA:
                 {
                     target = getResources().getString(R.string._english);
                     l_target = "en";
+                    id_target = 6;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Poland:
                 {
                     target = getResources().getString(R.string._polish);
                     l_target = "pl";
+                    id_target = 7;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Sweden:
                 {
                     target = getResources().getString(R.string._swedish);
                     l_target = "sv";
+                    id_target = 8;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Czech:
                 {
                     target = getResources().getString(R.string._czech);
                     l_target = "cs";
+                    id_target = 9;
+                    toAddInDB = false;
+                    mainButton.setText(getResources().getString(R.string.translate));
                     break;
                 }
             }
@@ -372,7 +434,8 @@ public class AddActivity_Translate extends Activity
                 temp = text.getString(0);
 
                 _result.setText(temp);
-                //Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
+                toAddInDB = true;
+                mainButton.setText(getResources().getString(R.string.add_to_DB));
 
             } catch (Exception e)
             {
@@ -382,9 +445,46 @@ public class AddActivity_Translate extends Activity
         }
     }
 
+    public void SaveInDB()
+    {
+        InputStream is = null;
+
+        List<NameValuePair> nameValuePairs = new ArrayList<>(1);
+        nameValuePairs.add(new BasicNameValuePair("user", user_name));
+        nameValuePairs.add(new BasicNameValuePair("word_original", myText.getText().toString()));
+        nameValuePairs.add(new BasicNameValuePair("word_translate", _result.getText().toString()));
+        nameValuePairs.add(new BasicNameValuePair("lang_original", String.valueOf(id_source)));
+        nameValuePairs.add(new BasicNameValuePair("lang_translate", String.valueOf(id_target)));
+
+        try
+        {
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost("http://remember-everything.ml/connections/add_translate.php");
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+            is = entity.getContent();
+
+            String msg = getResources().getString(R.string.translate_add);
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    ;
+
     //кнопка "Вход"
     public void toTranslate(View v)
     {
-        new task().execute();
+        if (!toAddInDB)
+            new task().execute();
+        else
+        {
+            SaveInDB();
+            toAddInDB = false;
+            mainButton.setText(getResources().getString(R.string.translate));
+        }
     }
 }

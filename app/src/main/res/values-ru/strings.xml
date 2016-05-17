@@ -22,8 +22,6 @@
     <string name="remember_it">Запомнить</string>
     <string name="date_add">Дата была успешно сохранена</string>
     <string name="def_add">Определение было успешно добавлено</string>
-    <string name="translate_add">Перевод был успешно добавлен</string>
-    <string name="translate">Перевести</string>
     <string name="add_to_DB">Сохранить</string>
     <string name="english">английского</string>
     <string name="french">французского</string>
@@ -52,4 +50,6 @@
     <string name="hint_term">Введите термин</string>
     <string name="hint_word">Введите слово</string>
     <string name="result">Перевод</string>
+    <string name="translate_add">Перевод был успешно добавлен</string>
+    <string name="translate">Перевести</string>
 </resources>

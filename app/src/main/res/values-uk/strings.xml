@@ -21,9 +21,7 @@
     <string name="period">Ввести період між двома датами</string>
     <string name="remember_it">Запам\'ятати</string>
     <string name="date_add">Дату було успішно збережено</string>
-    <string name="translate_add">Переклад було успішно збережено</string>
     <string name="def_add">Визначення було успішно збережено</string>
-    <string name="translate">Перекласти</string>
     <string name="add_to_DB">Зберегти</string>
     <string name="english">англійської</string>
     <string name="ukrainian">української</string>
@@ -52,4 +50,6 @@
     <string name="hint_term">Введіть термін</string>
     <string name="hint_word">Введіть слово</string>
     <string name="result">Переклад</string>
+    <string name="translate_add">Переклад було успішно збережено</string>
+    <string name="translate">Перекласти</string>
 </resources>
