@@ -4,7 +4,6 @@
     <string name="login">Login</string>
     <string name="enter">Enter</string>
     <string name="password">Password</string>
-    <string name="password_twice">Password (twice)</string>
     <string name="remember_me">Remember me</string>
     <string name="register">or register, if you are new here</string>
     <string name="success_login">Log in successful!</string>
@@ -17,6 +16,7 @@
     <string name="word">Type your word to remember:</string>
     <string name="date">Type your date to remember:</string>
     <string name="period">Enter period between 2 dates</string>
+    <string name="repeat">Repeat password</string>
 
     <string name="hint_term">Term place</string>
     <string name="hint_word">Word place</string>

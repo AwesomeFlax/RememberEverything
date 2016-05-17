@@ -9,7 +9,6 @@
     <string name="hint_def">Введіть визнечення терміну</string>
     <string name="login">Ім\'я користувача</string>
     <string name="password">Пароль</string>
-    <string name="password_twice">Пароль (двічі)</string>
     <string name="reg_alert">Переконайтесь, що паролі однакові!</string>
     <string name="reg_success">Реєстрація пройшла успішно!</string>
     <string name="register">або реєстрація, якщо ви тут вперше</string>
@@ -52,4 +51,5 @@
     <string name="result">Переклад</string>
     <string name="translate_add">Переклад було успішно збережено</string>
     <string name="translate">Перекласти</string>
+    <string name="repeat">Повторіть пароль</string>
 </resources>

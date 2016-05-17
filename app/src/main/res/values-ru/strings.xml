@@ -11,7 +11,6 @@
     <string name="word">Введите слово для запоминания:</string>
     <string name="register">или регистриация, если вы тут впервые</string>
     <string name="to_reg">Зарегистрироваться</string>
-    <string name="password_twice">Пароль (дважды)</string>
     <string name="reg_alert">Удебитесь, что пароли одинаковые!</string>
     <string name="reg_success">Регистрация прошла успешно!</string>
     <string name="used_name">Это имя пользователя уже используется</string>
@@ -52,4 +51,5 @@
     <string name="result">Перевод</string>
     <string name="translate_add">Перевод был успешно добавлен</string>
     <string name="translate">Перевести</string>
+    <string name="repeat">Повторите пароль</string>
 </resources>

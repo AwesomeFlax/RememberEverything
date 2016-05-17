@@ -70,8 +70,9 @@
             android:id="@+id/textView"
             android:gravity="center"
             android:foregroundGravity="center"
-            android:textSize="25dp"
-            android:layout_gravity="center"/>
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/background_light"/>
     </FrameLayout>
 
     <ImageView

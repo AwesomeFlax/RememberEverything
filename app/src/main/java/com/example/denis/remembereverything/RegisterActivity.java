@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -32,7 +33,7 @@ public class RegisterActivity extends Activity
     EditText login;
     EditText password_1;
     EditText password_2;
-    Button register;
+    ImageButton register;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -45,7 +46,7 @@ public class RegisterActivity extends Activity
         login = (EditText) findViewById(R.id.loginEdit);
         password_1 = (EditText) findViewById(R.id.passEdit);
         password_2 = (EditText) findViewById(R.id.passEdit2);
-        register = (Button) findViewById(R.id.registerButton);
+        register = (ImageButton) findViewById(R.id.registerButton);
 
         register.setOnClickListener(new View.OnClickListener()
         {
