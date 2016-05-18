@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="back"
-        android:id="@+id/back"
-        android:layout_gravity="center_horizontal"
-        android:onClick="getBack"/>
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,18 +12,20 @@
         android:id="@+id/wordView"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:textColor="#2c2020"
-        android:visibility="visible"/>
+        android:textColor="#9e9e9e"
+        android:visibility="visible"
+        android:textSize="20dp" />
 
     <EditText
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:id="@+id/wordText"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:hint="@string/hint_word"
         android:visibility="visible"
-        android:gravity="center_horizontal"/>
+        android:background="@drawable/frame"
+        android:gravity="center" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -141,12 +135,9 @@
             android:layout_height="45dp"
             android:id="@+id/_Spain"
             android:background="@drawable/spain"
-            android:layout_below="@+id/Italy"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="6dp"
-            android:layout_alignParentLeft="true"/>
+            android:layout_below="@+id/translate_info"
+            android:layout_alignLeft="@+id/_Italy"
+            android:layout_alignStart="@+id/_Italy" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -243,28 +234,61 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/translate_info"
-            android:layout_centerInParent="true"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/Italy"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:text="@string/result"
         android:id="@+id/result"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:textSize="25dp"
-        android:gravity="center_horizontal"/>
+        android:textSize="20dp"
+        android:gravity="center"
+        android:background="@drawable/frame" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/translate"
-        android:id="@+id/send"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:onClick="toTranslate"/>
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:text="@string/translate"
+            android:id="@+id/send"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:onClick="toTranslate"
+            android:background="@drawable/button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/remember_it"
+            android:id="@+id/textView6"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="20dp" />
+    </FrameLayout>
+
+    <ImageButton
+        style="@style/Base.Theme.AppCompat"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="back"
+        android:id="@+id/back"
+        android:layout_gravity="center_horizontal"
+        android:onClick="getBack"
+        android:background="@drawable/back_btn"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

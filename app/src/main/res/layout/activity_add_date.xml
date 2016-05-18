@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:weightSum="1">
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="back"
-        android:id="@+id/back"
-        android:layout_gravity="center_horizontal"
-        android:onClick="getBack"/>
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@drawable/background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,84 +13,87 @@
         android:id="@+id/wordView"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:textColor="#2c2020"
-        android:visibility="visible"/>
-
-    <EditText
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/wordText"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:hint="@string/hint_word"
+        android:textColor="#9e9e9e"
         android:visibility="visible"
-        android:gravity="center_horizontal"/>
+        android:textSize="20dp" />
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:gravity="center_horizontal"
         android:visibility="visible"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp"
+        android:background="@drawable/frame"
+        android:layout_weight="0.05"
+        android:layout_gravity="center">
 
         <EditText
-            android:layout_width="60dp"
+            android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/day"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:gravity="center_horizontal"
             android:maxLength="2"
-            android:hint="dd"/>
+            android:hint="dd"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
             android:id="@+id/sep_1"
-            android:textSize="30sp"/>
+            android:textSize="20dp"
+            android:layout_gravity="center" />
 
         <EditText
-            android:layout_width="60dp"
+            android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/month"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:gravity="center_horizontal"
             android:maxLength="2"
-            android:hint="mm"/>
+            android:hint="mm"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
             android:id="@+id/sep_2"
-            android:textSize="30sp"/>
+            android:textSize="20dp"
+            android:layout_gravity="center" />
 
         <EditText
-            android:layout_width="120dp"
+            android:layout_width="89dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/year"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:gravity="center_horizontal"
             android:maxLength="4"
-            android:hint="yyyy"/>
+            android:hint="yyyy"
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/qeqwe"
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:gravity="center_horizontal"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:background="@drawable/frame"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
 
         <EditText
-            android:layout_width="60dp"
+            android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
@@ -107,7 +102,8 @@
             android:visibility="invisible"
             android:maxLength="2"
             android:gravity="center_horizontal"
-            android:hint="dd"/>
+            android:hint="dd"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -115,10 +111,11 @@
             android:text="/"
             android:id="@+id/sep_3"
             android:textSize="30sp"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:layout_gravity="center" />
 
         <EditText
-            android:layout_width="60dp"
+            android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
@@ -127,7 +124,8 @@
             android:visibility="invisible"
             android:maxLength="2"
             android:gravity="center_horizontal"
-            android:hint="mm"/>
+            android:hint="mm"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,10 +133,11 @@
             android:text="/"
             android:id="@+id/sep_4"
             android:textSize="30sp"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:layout_gravity="center" />
 
         <EditText
-            android:layout_width="120dp"
+            android:layout_width="89dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
@@ -147,7 +146,8 @@
             android:visibility="invisible"
             android:maxLength="4"
             android:gravity="center_horizontal"
-            android:hint="yyyy"/>
+            android:hint="yyyy"
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <CheckBox
@@ -155,17 +155,57 @@
         android:layout_height="wrap_content"
         android:text="@string/period"
         android:id="@+id/period_box"
-        android:layout_gravity="center_horizontal"
         android:checked="false"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:id="@+id/wordText"
+        android:layout_marginTop="5dp"
+        android:hint="@string/hint_word"
+        android:visibility="visible"
+        android:gravity="center_horizontal"
+        android:background="@drawable/big_frame"
+        android:layout_gravity="center" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/send_data"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginTop="47dp"
-        android:text="@string/remember_it"/>
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:id="@+id/send_data"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="@string/remember_it"
+            android:background="@drawable/button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/remember_it"
+            android:id="@+id/textView4"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/white" />
+
+    </FrameLayout>
+
+    <ImageButton
+        style="@style/AppTheme"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="back"
+        android:id="@+id/back"
+        android:layout_gravity="center_horizontal"
+        android:onClick="getBack"
+        android:background="@drawable/back_btn"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>
