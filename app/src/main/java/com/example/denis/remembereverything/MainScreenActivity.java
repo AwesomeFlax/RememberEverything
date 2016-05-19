@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainScreenActivity extends Activity
 {
@@ -20,11 +21,11 @@ public class MainScreenActivity extends Activity
         username = intent.getStringExtra("name");
 
         //4 кнопки на этом бренном экране
-        Button date = (Button) findViewById(R.id.date);
-        Button note = (Button) findViewById(R.id.note);
-        Button translate = (Button) findViewById(R.id.translate);
-        Button gallery = (Button) findViewById(R.id.gallery);
-        Button tests = (Button) findViewById(R.id.test);
+        ImageButton date = (ImageButton) findViewById(R.id.date);
+        ImageButton note = (ImageButton) findViewById(R.id.note);
+        ImageButton translate = (ImageButton) findViewById(R.id.translate);
+        ImageButton gallery = (ImageButton) findViewById(R.id.gallery);
+        ImageButton tests = (ImageButton) findViewById(R.id.test);
 
         //обработчик на них
         translate.setOnClickListener(new CustomClickListener());
