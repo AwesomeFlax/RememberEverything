@@ -11,7 +11,7 @@
         android:layout_weight="1">
 
         <ImageView
-            android:layout_width="180dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView4"
             android:background="@drawable/logo_menu"
@@ -20,38 +20,7 @@
             android:layout_marginRight="10dp"/>
 
         <ImageButton
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:text="add translate"
-            android:id="@+id/translate"
-            android:layout_column="1"
-            android:background="@drawable/_translate"
-            android:layout_rowWeight="0"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <ImageButton
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:text="add date"
-            android:id="@+id/date"
-            android:layout_gravity="center_horizontal"
-            android:layout_column="0"
-            android:layout_weight="1"
-            android:background="@drawable/_callendar"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
-
-        <ImageButton
-            android:layout_width="180dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:text="add note"
             android:id="@+id/note"
@@ -70,7 +39,7 @@
         android:layout_weight="1">
 
         <ImageButton
-            android:layout_width="180dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:text="gallery"
             android:id="@+id/gallery"
@@ -82,7 +51,27 @@
             android:layout_marginRight="10dp"/>
 
         <ImageButton
-            android:layout_width="180dp"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="add date"
+            android:id="@+id/date"
+            android:layout_gravity="center_horizontal"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:background="@drawable/_callendar"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:text="tests"
             android:id="@+id/test"
@@ -92,6 +81,19 @@
             android:background="@drawable/_test"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
+
+        <ImageButton
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="add translate"
+            android:id="@+id/translate"
+            android:layout_column="1"
+            android:background="@drawable/_translate"
+            android:layout_rowWeight="0"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
     </LinearLayout>
 
 </LinearLayout>
