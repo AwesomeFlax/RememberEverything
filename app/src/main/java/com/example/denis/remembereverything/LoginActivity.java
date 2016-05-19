@@ -185,6 +185,7 @@ public class LoginActivity extends Activity
                             String msg = getResources().getString(R.string.success_login);
                             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.putExtra("name", login.getText().toString());
                             startActivity(intent);
                         }

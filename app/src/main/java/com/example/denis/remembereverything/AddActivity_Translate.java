@@ -34,18 +34,20 @@ import java.util.List;
 public class AddActivity_Translate extends Activity
 {
     String user_name;
-    boolean toAddInDB = false;
-    TextView indicator;
-    Button mainButton;
-    EditText myText;
-    TextView _result;
     String l_source = "";
     String l_target = "";
-    int id_source;
-    int id_target;
-
     String source;
     String target;
+
+    TextView indicator;
+    TextView _result;
+    TextView indic;
+    EditText myText;
+    ImageButton mainButton;
+
+    int id_source;
+    int id_target;
+    boolean toAddInDB = false;
 
     //суперпрекрасное сколичество ФЛАГОВ
     ImageButton Spain;
@@ -83,15 +85,17 @@ public class AddActivity_Translate extends Activity
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        myText = (EditText) findViewById(R.id.wordText);
+        _result = (TextView) findViewById(R.id.result);
+        indicator = (TextView) findViewById(R.id.translate_info);
+        indic = (TextView) findViewById(R.id.indic);
+        mainButton = (ImageButton) findViewById(R.id.send);
+
         source = getResources().getString(R.string.language);
         target = getResources().getString(R.string._language);
         String temp = getResources().getString(R.string.from) + " " + source + " " + getResources().getString(R.string.to) + " " + target;
-        indicator = (TextView) findViewById(R.id.translate_info);
-        indicator.setText(temp);
 
-        myText = (EditText) findViewById(R.id.wordText);
-        _result = (TextView) findViewById(R.id.result);
-        mainButton = (Button) findViewById(R.id.send);
+        indicator.setText(temp);
 
         //ловим эти замечательные кнопки
         Spain = (ImageButton) findViewById(R.id.Spain);
@@ -142,14 +146,6 @@ public class AddActivity_Translate extends Activity
         //new task().execute();
     }
 
-    public void getBack(View v)
-    {
-        Intent intent;
-        intent = new Intent(this, MainScreenActivity.class);
-        intent.putExtra("name", user_name);
-        startActivity(intent);
-    }
-
     //формирование интерактивного поля
     public class CountryListener implements View.OnClickListener
     {
@@ -164,7 +160,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "es";
                     id_source = 0;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Ukraine:
@@ -173,7 +169,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "uk";
                     id_source = 1;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Italy:
@@ -182,7 +178,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "it";
                     id_source = 2;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.France:
@@ -191,7 +187,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "fr";
                     id_source = 3;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Germany:
@@ -200,7 +196,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "de";
                     id_source = 4;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Russia:
@@ -209,7 +205,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "ru";
                     id_source = 5;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.USA:
@@ -218,7 +214,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "en";
                     id_source = 6;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Poland:
@@ -227,7 +223,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "pl";
                     id_source = 7;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Sweden:
@@ -236,7 +232,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "sv";
                     id_source = 8;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id.Czech:
@@ -245,7 +241,7 @@ public class AddActivity_Translate extends Activity
                     l_source = "cs";
                     id_source = 9;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
 
@@ -255,7 +251,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "es";
                     id_target = 0;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Ukraine:
@@ -264,7 +260,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "uk";
                     id_target = 1;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Italy:
@@ -273,7 +269,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "it";
                     id_target = 2;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._France:
@@ -282,7 +278,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "fr";
                     id_target = 3;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Germany:
@@ -291,7 +287,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "de";
                     id_target = 4;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Russia:
@@ -300,7 +296,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "ru";
                     id_target = 5;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._USA:
@@ -309,7 +305,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "en";
                     id_target = 6;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Poland:
@@ -318,7 +314,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "pl";
                     id_target = 7;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Sweden:
@@ -327,7 +323,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "sv";
                     id_target = 8;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
                 case R.id._Czech:
@@ -336,7 +332,7 @@ public class AddActivity_Translate extends Activity
                     l_target = "cs";
                     id_target = 9;
                     toAddInDB = false;
-                    mainButton.setText(getResources().getString(R.string.translate));
+                    indic.setText(getResources().getString(R.string.translate));
                     break;
                 }
             }
@@ -435,7 +431,7 @@ public class AddActivity_Translate extends Activity
 
                 _result.setText(temp);
                 toAddInDB = true;
-                mainButton.setText(getResources().getString(R.string.add_to_DB));
+                indic.setText(getResources().getString(R.string.add_to_DB));
 
             } catch (Exception e)
             {
@@ -473,8 +469,6 @@ public class AddActivity_Translate extends Activity
         }
     }
 
-    ;
-
     //кнопка "Вход"
     public void toTranslate(View v)
     {
@@ -484,7 +478,7 @@ public class AddActivity_Translate extends Activity
         {
             SaveInDB();
             toAddInDB = false;
-            mainButton.setText(getResources().getString(R.string.translate));
+            indic.setText(getResources().getString(R.string.translate));
         }
     }
 }

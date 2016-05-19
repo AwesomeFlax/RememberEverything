@@ -46,7 +46,7 @@ public class MainScreenActivity extends Activity
                 case R.id.date:
                 {
                     Intent intent_date = new Intent(MainScreenActivity.this, AddActivity_Date.class);
-                    intent_date.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent_date.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent_date.putExtra("name", username);
                     startActivity(intent_date);
 
@@ -56,7 +56,7 @@ public class MainScreenActivity extends Activity
                 case R.id.note:
                 {
                     Intent intent_definition = new Intent(MainScreenActivity.this, AddActivity_Definition.class);
-                    intent_definition.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent_definition.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent_definition.putExtra("name", username);
                     startActivity(intent_definition);
 
@@ -66,7 +66,7 @@ public class MainScreenActivity extends Activity
                 case R.id.translate:
                 {
                     Intent intent_translate = new Intent(MainScreenActivity.this, AddActivity_Translate.class);
-                    intent_translate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent_translate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent_translate.putExtra("name", username);
                     startActivity(intent_translate);
 

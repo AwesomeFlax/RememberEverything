@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +35,7 @@ public class AddActivity_Date extends Activity
 {
     //объявление 'лементов на экране
     CheckBox period;
-    Button send;
+    ImageButton send;
     EditText wordText;
 
     //даты
@@ -45,6 +47,8 @@ public class AddActivity_Date extends Activity
 
     EditText year_1;
     EditText year_2;
+
+    LinearLayout date2LL;
 
     boolean singleDate = true;
     String user_name;
@@ -65,7 +69,7 @@ public class AddActivity_Date extends Activity
         //объекты
         period = (CheckBox) findViewById(R.id.period_box);
         period.setOnCheckedChangeListener(new myCheckBoxChangeClicker());
-        send = (Button) findViewById(R.id.send_data);
+        send = (ImageButton) findViewById(R.id.send_data);
         wordText = (EditText) findViewById(R.id.wordText);
 
         //даты
@@ -77,6 +81,8 @@ public class AddActivity_Date extends Activity
 
         year_1 = (EditText) findViewById(R.id.year);
         year_2 = (EditText) findViewById(R.id.year_2);
+
+        date2LL = (LinearLayout) findViewById(R.id.date2);
 
         send.setOnClickListener(new View.OnClickListener()
         {
@@ -173,6 +179,7 @@ public class AddActivity_Date extends Activity
                 year.setVisibility(View.VISIBLE);
                 sep_1.setVisibility(View.VISIBLE);
                 sep_2.setVisibility(View.VISIBLE);
+                date2LL.setVisibility(View.VISIBLE);
 
                 singleDate = false;
             } else
@@ -189,16 +196,10 @@ public class AddActivity_Date extends Activity
                 sep_1.setVisibility(View.INVISIBLE);
                 sep_2.setVisibility(View.INVISIBLE);
 
+                date2LL.setVisibility(View.INVISIBLE);
+
                 singleDate = true;
             }
         }
-    }
-
-    public void getBack(View v)
-    {
-        Intent intent;
-        intent = new Intent(this, MainScreenActivity.class);
-        intent.putExtra("name", user_name);
-        startActivity(intent);
     }
 }

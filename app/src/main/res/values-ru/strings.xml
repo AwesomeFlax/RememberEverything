@@ -15,7 +15,7 @@
     <string name="reg_success">Регистрация прошла успешно!</string>
     <string name="used_name">Это имя пользователя уже используется</string>
     <string name="date">Введите дату для запоминания</string>
-    <string name="hint_def">Введите определение термина сюда</string>
+    <string name="hint_def">Введите определение термина</string>
     <string name="success_login">Авторизация успешна</string>
     <string name="period">Ввести период между двумя датами</string>
     <string name="remember_it">Запомнить</string>

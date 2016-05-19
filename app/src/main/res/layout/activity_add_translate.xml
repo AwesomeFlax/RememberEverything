@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -237,7 +237,9 @@
             android:gravity="center_horizontal"
             android:layout_below="@+id/Italy"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
     </RelativeLayout>
 
@@ -247,7 +249,7 @@
         android:text="@string/result"
         android:id="@+id/result"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textSize="20dp"
         android:gravity="center"
         android:background="@drawable/frame" />
@@ -264,7 +266,7 @@
             android:text="@string/translate"
             android:id="@+id/send"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="5dp"
             android:onClick="toTranslate"
             android:background="@drawable/button" />
 
@@ -273,22 +275,11 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/remember_it"
-            android:id="@+id/textView6"
+            android:id="@+id/indic"
             android:layout_gravity="center"
             android:textColor="@android:color/white"
             android:gravity="center"
             android:textSize="20dp" />
     </FrameLayout>
-
-    <ImageButton
-        style="@style/Base.Theme.AppCompat"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:text="back"
-        android:id="@+id/back"
-        android:layout_gravity="center_horizontal"
-        android:onClick="getBack"
-        android:background="@drawable/back_btn"
-        android:layout_marginTop="20dp" />
 
 </LinearLayout>

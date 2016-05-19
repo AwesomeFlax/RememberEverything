@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -28,7 +29,7 @@ public class AddActivity_Definition extends Activity
     String user_name;
     EditText term;
     EditText definition;
-    Button send;
+    ImageButton send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,7 +46,7 @@ public class AddActivity_Definition extends Activity
 
         term = (EditText) findViewById(R.id.wordText);
         definition = (EditText) findViewById(R.id.defText);
-        send = (Button) findViewById(R.id.send);
+        send = (ImageButton) findViewById(R.id.send);
 
         send.setOnClickListener(new View.OnClickListener()
         {
@@ -83,13 +84,5 @@ public class AddActivity_Definition extends Activity
                 }
             }
         });
-    }
-
-    public void getBack(View v)
-    {
-        Intent intent;
-        intent = new Intent(this, MainScreenActivity.class);
-        intent.putExtra("name", user_name);
-        startActivity(intent);
     }
 }
