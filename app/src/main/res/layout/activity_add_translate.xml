@@ -185,19 +185,17 @@
             android:id="@+id/_Poland"
             android:background="@drawable/poland"
             android:layout_below="@+id/_Germany"
-            android:layout_toEndOf="@+id/_Ukraine"
-            android:layout_marginRight="6dp"
-            android:layout_toRightOf="@+id/_Ukraine"/>
+            android:layout_toRightOf="@+id/_France"
+            android:layout_toEndOf="@+id/_France"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:id="@+id/_Ukraine"
             android:background="@drawable/ukraine"
-            android:layout_below="@+id/_Germany"
-            android:layout_toEndOf="@+id/_Sweden"
-            android:layout_marginRight="6dp"
-            android:layout_toRightOf="@+id/_Sweden"/>
+            android:layout_below="@+id/_France"
+            android:layout_alignLeft="@+id/_France"
+            android:layout_alignStart="@+id/_France"/>
 
         <ImageButton
             android:layout_width="50dp"
@@ -225,9 +223,8 @@
             android:id="@+id/_Sweden"
             android:background="@drawable/sweden"
             android:layout_below="@+id/_Czech"
-            android:layout_toEndOf="@+id/_Spain"
-            android:layout_marginRight="6dp"
-            android:layout_toRightOf="@+id/_Spain"/>
+            android:layout_alignLeft="@+id/_Czech"
+            android:layout_alignStart="@+id/_Czech"/>
 
         <TextView
             android:layout_width="fill_parent"

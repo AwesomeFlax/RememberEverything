@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/tab1"
+                android:id="@+id/tab3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -30,7 +30,7 @@
                     style="@style/AppTheme"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:id="@+id/back"
+                    android:id="@+id/translate_back"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/back_btn"/>
@@ -43,7 +43,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/title"
+                        android:text="1"
+                        android:id="@+id/translate_counter"
+                        android:layout_gravity="center_horizontal|top"
+                        android:layout_marginTop="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/translate_title"
                         android:layout_gravity="center_horizontal|top"
                         android:layout_marginTop="70dp"
                         android:text="Title 1"/>
@@ -52,23 +60,44 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Content 1"
-                        android:id="@+id/content"
-                        android:layout_gravity="center"/>
+                        android:id="@+id/translate_content_1"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="40dp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/flag_1"
+                        android:foregroundGravity="top"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="60dp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/flag_2"
+                        android:foregroundGravity="top"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginBottom="60dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
-                        android:id="@+id/definition_counter"
-                        android:layout_gravity="center_horizontal|top"
-                        android:layout_marginTop="30dp"/>
+                        android:text="-->"
+                        android:id="@+id/arrow"
+                        android:layout_gravity="center"
+                        android:textSize="25dp"
+                        android:layout_marginBottom="60dp"/>
+
                 </FrameLayout>
 
                 <ImageButton
                     style="@style/AppTheme"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:id="@+id/next"
+                    android:id="@+id/translate_next"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/next_btn"/>
@@ -84,7 +113,7 @@
                     style="@style/AppTheme"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:id="@+id/button3"
+                    android:id="@+id/date_back"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/back_btn"/>
@@ -97,31 +126,48 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/title2"
+                        android:text="1"
+                        android:id="@+id/date_counter"
                         android:layout_gravity="center_horizontal|top"
-                        android:layout_marginTop="20dp"
-                        android:text="Title 2"/>
+                        android:layout_marginTop="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/date_title"
+                        android:layout_gravity="center_horizontal|top"
+                        android:layout_marginTop="70dp"
+                        android:text="Title 1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Content 1"
+                        android:id="@+id/date_content_1"
+                        android:layout_gravity="center"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Content 2"
-                        android:id="@+id/content2"
-                        android:layout_gravity="center"/>
+                        android:id="@+id/date_content_2"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="40dp"/>
+
                 </FrameLayout>
 
                 <ImageButton
                     style="@style/AppTheme"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:id="@+id/button4"
+                    android:id="@+id/date_next"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/next_btn"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/tab3"
+                android:id="@+id/tab1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -130,7 +176,7 @@
                     style="@style/AppTheme"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:id="@+id/button5"
+                    android:id="@+id/definition_back"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/back_btn"/>
@@ -143,29 +189,40 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/title3"
+                        android:text="1"
+                        android:id="@+id/definition_counter"
                         android:layout_gravity="center_horizontal|top"
-                        android:layout_marginTop="20dp"
-                        android:text="Title 3"/>
+                        android:layout_marginTop="30dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Content 3"
-                        android:id="@+id/content3"
+                        android:id="@+id/definition_title"
+                        android:layout_gravity="center_horizontal|top"
+                        android:layout_marginTop="70dp"
+                        android:text="Title 1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Content 1"
+                        android:id="@+id/definition_content"
                         android:layout_gravity="center"/>
+
                 </FrameLayout>
 
                 <ImageButton
                     style="@style/AppTheme"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:id="@+id/button6"
+                    android:id="@+id/definition_next"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/next_btn"/>
             </LinearLayout>
+
         </FrameLayout>
+
     </LinearLayout>
 
 </TabHost>
