@@ -73,6 +73,16 @@ public class MainScreenActivity extends Activity
 
                     break;
                 }
+
+                case R.id.gallery:
+                {
+                    Intent intent_gallery = new Intent(MainScreenActivity.this, Gallery.class);
+                    intent_gallery.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent_gallery.putExtra("name", username);
+                    startActivity(intent_gallery);
+
+                    break;
+                }
             }
         }
     }
