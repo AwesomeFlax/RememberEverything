@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -129,7 +130,7 @@ public class AddActivity_Date extends Activity
 
                 List<NameValuePair> nameValuePairs = new ArrayList<>(1);
 
-                nameValuePairs.add(new BasicNameValuePair("term", term));
+                nameValuePairs.add(new BasicNameValuePair("term", toBase64(term)));
                 nameValuePairs.add(new BasicNameValuePair("name", user_name));
 
                 nameValuePairs.add(new BasicNameValuePair("day_1", _day1));
@@ -201,5 +202,11 @@ public class AddActivity_Date extends Activity
                 singleDate = true;
             }
         }
+    }
+
+    public String toBase64(String data)
+    {
+        byte[] encodedBytes = Base64.encodeBase64(data.getBytes());
+        return new String(encodedBytes);
     }
 }

@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 public class MainScreenActivity extends Activity
 {
-    String username;
+    String user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -18,7 +18,7 @@ public class MainScreenActivity extends Activity
         setContentView(R.layout.main_screen);
 
         Intent intent = getIntent();
-        username = intent.getStringExtra("name");
+        user_name = intent.getStringExtra("name");
 
         //4 кнопки на этом бренном экране
         ImageButton date = (ImageButton) findViewById(R.id.date);
@@ -48,7 +48,7 @@ public class MainScreenActivity extends Activity
                 {
                     Intent intent_date = new Intent(MainScreenActivity.this, AddActivity_Date.class);
                     intent_date.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent_date.putExtra("name", username);
+                    intent_date.putExtra("name", user_name);
                     startActivity(intent_date);
 
                     break;
@@ -58,7 +58,7 @@ public class MainScreenActivity extends Activity
                 {
                     Intent intent_definition = new Intent(MainScreenActivity.this, AddActivity_Definition.class);
                     intent_definition.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent_definition.putExtra("name", username);
+                    intent_definition.putExtra("name", user_name);
                     startActivity(intent_definition);
 
                     break;
@@ -68,7 +68,7 @@ public class MainScreenActivity extends Activity
                 {
                     Intent intent_translate = new Intent(MainScreenActivity.this, AddActivity_Translate.class);
                     intent_translate.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent_translate.putExtra("name", username);
+                    intent_translate.putExtra("name", user_name);
                     startActivity(intent_translate);
 
                     break;
@@ -78,8 +78,18 @@ public class MainScreenActivity extends Activity
                 {
                     Intent intent_gallery = new Intent(MainScreenActivity.this, Gallery.class);
                     intent_gallery.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent_gallery.putExtra("name", username);
+                    intent_gallery.putExtra("name", user_name);
                     startActivity(intent_gallery);
+
+                    break;
+                }
+
+                case R.id.test:
+                {
+                    Intent intent_test = new Intent(MainScreenActivity.this, Tests.class);
+                    intent_test.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent_test.putExtra("name", user_name);
+                    startActivity(intent_test);
 
                     break;
                 }

@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -28,11 +28,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddActivity_Translate extends Activity
+public class AddActivity_Translate extends Activity implements Serializable
 {
+    //для сериализации
+    public byte version = 100;
+    public byte count = 0;
+
     String user_name;
     String l_source = "";
     String l_target = "";
@@ -447,8 +453,8 @@ public class AddActivity_Translate extends Activity
 
         List<NameValuePair> nameValuePairs = new ArrayList<>(1);
         nameValuePairs.add(new BasicNameValuePair("user", user_name));
-        nameValuePairs.add(new BasicNameValuePair("word_original", myText.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("word_translate", _result.getText().toString()));
+        nameValuePairs.add(new BasicNameValuePair("word_original", toBase64(myText.getText().toString())));
+        nameValuePairs.add(new BasicNameValuePair("word_translate", toBase64(_result.getText().toString())));
         nameValuePairs.add(new BasicNameValuePair("lang_original", String.valueOf(id_source)));
         nameValuePairs.add(new BasicNameValuePair("lang_translate", String.valueOf(id_target)));
 
@@ -467,6 +473,12 @@ public class AddActivity_Translate extends Activity
         {
             e.printStackTrace();
         }
+    }
+
+    public String toBase64(String data)
+    {
+        byte[] encodedBytes = Base64.encodeBase64(data.getBytes());
+        return new String(encodedBytes);
     }
 
     //кнопка "Вход"

@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -63,9 +64,9 @@ public class AddActivity_Definition extends Activity
 
                 List<NameValuePair> nameValuePairs = new ArrayList<>(1);
 
-                nameValuePairs.add(new BasicNameValuePair("term", _term));
+                nameValuePairs.add(new BasicNameValuePair("term", toBase64(_term)));
                 nameValuePairs.add(new BasicNameValuePair("name", user_name));
-                nameValuePairs.add(new BasicNameValuePair("definition", _definition));
+                nameValuePairs.add(new BasicNameValuePair("definition", toBase64(_definition)));
 
                 try
                 {
@@ -84,5 +85,11 @@ public class AddActivity_Definition extends Activity
                 }
             }
         });
+    }
+
+    public String toBase64(String data)
+    {
+        byte[] encodedBytes = Base64.encodeBase64(data.getBytes());
+        return new String(encodedBytes);
     }
 }

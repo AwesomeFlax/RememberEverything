@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class Gallery extends Activity
@@ -294,8 +296,8 @@ public class Gallery extends Activity
                     {
                         if (local_counter == _INT_definition_counter)
                         {
-                            definition_title.setText(Jasonobject.getString("term"));
-                            definition_content.setText(Jasonobject.getString("definition"));
+                            definition_title.setText(fromBase64(Jasonobject.getString("term")));
+                            definition_content.setText(fromBase64(Jasonobject.getString("definition")));
                         }
 
                         local_counter++;
@@ -380,7 +382,7 @@ public class Gallery extends Activity
                     {
                         if (local_counter == _INT_date_counter)
                         {
-                            date_title.setText(Jasonobject.getString("term"));
+                            date_title.setText(fromBase64(Jasonobject.getString("term")));
                             date_content_1.setText(Jasonobject.getString("date_1"));
                             if (Jasonobject.getString("period").equals("1"))
                             {
@@ -474,8 +476,8 @@ public class Gallery extends Activity
                     {
                         if (local_counter == _INT_translate_counter)
                         {
-                            translate_title.setText(Jasonobject.getString("word_original"));
-                            translate_content_1.setText(Jasonobject.getString("word_translate"));
+                            translate_title.setText(fromBase64(Jasonobject.getString("word_original")));
+                            translate_content_1.setText(fromBase64(Jasonobject.getString("word_translate")));
 
                             String index_1 = Jasonobject.getString("lang_original");
                             String index_2 = Jasonobject.getString("lang_translate");
@@ -493,5 +495,20 @@ public class Gallery extends Activity
                 Log.e("log_tag", "Error! " + e.toString());
             }
         }
+    }
+
+    public String fromBase64(String text)
+    {
+        byte[] data = null;
+        try
+        {
+            data = text.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+
+        byte[] decodedBytes = Base64.decodeBase64(data);
+        return new String(decodedBytes);
     }
 }

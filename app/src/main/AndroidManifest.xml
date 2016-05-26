@@ -30,6 +30,8 @@
 
         <activity android:name=".Gallery"/>
 
+        <activity android:name=".Tests"/>
+
     </application>
 
 </manifest>
