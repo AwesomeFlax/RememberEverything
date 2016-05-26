@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -36,6 +37,11 @@ public class Gallery extends Activity
     int _INT_date_counter = 0;
     int _INT_translate_counter = 0;
 
+    int date_cells;
+    int translate_cells;
+    int definition_cells;
+
+
     //поля для определений
     TextView definition_counter;
     TextView definition_title;
@@ -64,6 +70,7 @@ public class Gallery extends Activity
     ImageButton translate_back;
 
     Object[] flags = new Object[10];
+    ImageView[] cells_array = new ImageView[12];
 
 
     @Override
@@ -122,15 +129,23 @@ public class Gallery extends Activity
         flags[8] = R.drawable.sweden;
         flags[9] = R.drawable.czechrepublic;
 
+        cells_array[0] = (ImageView) findViewById(R.id.cell_1);
+        cells_array[1] = (ImageView) findViewById(R.id.cell_2);
+        cells_array[2] = (ImageView) findViewById(R.id.cell_3);
+        cells_array[3] = (ImageView) findViewById(R.id.cell_4);
+        cells_array[4] = (ImageView) findViewById(R.id.cell_5);
+        cells_array[5] = (ImageView) findViewById(R.id.cell_6);
+        cells_array[6] = (ImageView) findViewById(R.id.cell_7);
+        cells_array[7] = (ImageView) findViewById(R.id.cell_8);
+        cells_array[8] = (ImageView) findViewById(R.id.cell_9);
+        cells_array[9] = (ImageView) findViewById(R.id.cell_10);
+        cells_array[10] = (ImageView) findViewById(R.id.cell_11);
+        cells_array[11] = (ImageView) findViewById(R.id.cell_12);
+
         //вкладочки
         TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
         tabs.setup();
         TabHost.TabSpec spec;
-
-        //инициализация первых записей
-        new getDefinitions().execute();
-        new getDates().execute();
-        new getTranslates().execute();
 
         //их настройка
         spec = tabs.newTabSpec("tag1");
@@ -149,6 +164,11 @@ public class Gallery extends Activity
         tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
+
+        //инициализация первых записей
+        new getDefinitions().execute();
+        new getDates().execute();
+        new getTranslates().execute();
     }
 
     //счетчик, показывающий, какую запись показывать
@@ -298,6 +318,8 @@ public class Gallery extends Activity
                         {
                             definition_title.setText(fromBase64(Jasonobject.getString("term")));
                             definition_content.setText(fromBase64(Jasonobject.getString("definition")));
+                            definition_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            fillAllTheCells();
                         }
 
                         local_counter++;
@@ -384,6 +406,9 @@ public class Gallery extends Activity
                         {
                             date_title.setText(fromBase64(Jasonobject.getString("term")));
                             date_content_1.setText(Jasonobject.getString("date_1"));
+                            date_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            fillAllTheCells();
+
                             if (Jasonobject.getString("period").equals("1"))
                             {
                                 date_content_2.setVisibility(View.VISIBLE);
@@ -484,6 +509,8 @@ public class Gallery extends Activity
 
                             flag_1.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_1)]));
                             flag_2.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_2)]));
+                            translate_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            fillAllTheCells();
                         }
 
                         local_counter++;
@@ -494,6 +521,48 @@ public class Gallery extends Activity
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());
             }
+        }
+    }
+
+    public void fillAllTheCells()
+    {
+        for (int i = 0; i < 12; i++)
+            cells_array[i].setBackground(getResources().getDrawable(R.drawable.cell_empty));
+
+        for (int k = 1; k <= definition_cells; k++)
+        {
+            if (k == 1)
+                cells_array[8].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 2)
+                cells_array[9].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 3)
+                cells_array[10].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 4)
+                cells_array[11].setBackground(getResources().getDrawable(R.drawable.cell_full));
+        }
+
+        for (int k = 1; k <= translate_cells; k++)
+        {
+            if (k == 1)
+                cells_array[0].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 2)
+                cells_array[1].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 3)
+                cells_array[2].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 4)
+                cells_array[3].setBackground(getResources().getDrawable(R.drawable.cell_full));
+        }
+
+        for (int k = 1; k <= date_cells; k++)
+        {
+            if (k == 1)
+                cells_array[4].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 2)
+                cells_array[5].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 3)
+                cells_array[6].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            if (k == 4)
+                cells_array[7].setBackground(getResources().getDrawable(R.drawable.cell_full));
         }
     }
 
