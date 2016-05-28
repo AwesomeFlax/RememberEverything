@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
@@ -25,7 +26,9 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 
 public class Tests extends Activity
@@ -513,14 +516,20 @@ public class Tests extends Activity
                     JSONObject Jasonobject;
                     Jasonobject = Jarray.getJSONObject(i);
                     String name = Jasonobject.getString("user");
+                    long k2 = Integer.valueOf(Jasonobject.getString("check_date"));
+                    long k1 = getDate();
+
+                    //тестовые данные
+                    //Toast.makeText(getApplicationContext(), String.valueOf(k1), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), String.valueOf(k2*1000), Toast.LENGTH_LONG).show();
 
                     if (user_name.equalsIgnoreCase(name))
                     {
-                        if (local_counter == _INT_date_counter)
+                        if ((local_counter == _INT_date_counter) && ((k2 - k1) > 172800000))
                         {
                             //date_title.setText(fromBase64(Jasonobject.getString("term")));
                             //date_content_1.setText(Jasonobject.getString("date_1"));
-                            date_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            //date_cells = Integer.valueOf(Jasonobject.getString("check"));
                             //не трогай дурко //fillAllTheCells();
 
                             if (Jasonobject.getString("period").equals("1"))
@@ -531,6 +540,7 @@ public class Tests extends Activity
                             {
                                 //date_content_2.setVisibility(View.INVISIBLE);
                             }
+
                         }
 
                         local_counter++;
@@ -542,5 +552,16 @@ public class Tests extends Activity
                 Log.e("log_tag", "Error! " + e.toString());
             }
         }
+    }
+
+    public void launchDateCheck(View v)
+    {
+        new getDates().execute();
+    }
+
+    public long getDate()
+    {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.getTimeInMillis();
     }
 }
