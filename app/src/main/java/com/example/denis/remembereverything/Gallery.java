@@ -317,7 +317,7 @@ public class Gallery extends Activity
                         {
                             definition_title.setText(fromBase64(Jasonobject.getString("term")));
                             definition_content.setText(fromBase64(Jasonobject.getString("definition")));
-                            definition_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            definition_cells = Integer.valueOf(Jasonobject.getString("check_"));
                             fillAllTheCells();
                         }
 
@@ -405,7 +405,7 @@ public class Gallery extends Activity
                         {
                             date_title.setText(fromBase64(Jasonobject.getString("term")));
                             date_content_1.setText(Jasonobject.getString("date_1"));
-                            date_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            date_cells = Integer.valueOf(Jasonobject.getString("check_"));
                             fillAllTheCells();
 
                             if (Jasonobject.getString("period").equals("1"))
@@ -508,7 +508,7 @@ public class Gallery extends Activity
 
                             flag_1.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_1)]));
                             flag_2.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_2)]));
-                            translate_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            translate_cells = Integer.valueOf(Jasonobject.getString("check_"));
                             fillAllTheCells();
                         }
 

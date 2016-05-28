@@ -475,6 +475,12 @@ public class AddActivity_Translate extends Activity implements Serializable
         }
     }
 
+    public void onWordChange(View v)
+    {
+        toAddInDB = false;
+        indic.setText(getResources().getString(R.string.translate));
+    }
+
     public String toBase64(String data)
     {
         byte[] encodedBytes = Base64.encodeBase64(data.getBytes());

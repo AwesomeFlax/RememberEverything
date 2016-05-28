@@ -25,7 +25,9 @@
         android:hint="@string/hint_word"
         android:visibility="visible"
         android:background="@drawable/frame"
-        android:gravity="center" />
+        android:gravity="center"
+        android:clickable="true"
+        android:onClick="onWordChange"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
