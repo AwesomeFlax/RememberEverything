@@ -166,38 +166,6 @@
                     android:background="@drawable/next_btn"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/tab1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    style="@style/AppTheme"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/definition_back"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/back_btn"/>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4">
-
-                </FrameLayout>
-
-                <ImageButton
-                    style="@style/AppTheme"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/definition_next"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/next_btn"/>
-            </LinearLayout>
-
         </FrameLayout>
 
     </LinearLayout>

@@ -2,14 +2,40 @@ package com.example.denis.remembereverything;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TabHost;
 import android.widget.TextView;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Tests extends Activity
 {
+    int _INT_date_counter = 0;
+    int _INT_translate_counter = 0;
+
+    int date_cells;
+    int translate_cells;
+
     String user_name;
     String eventText;
     TextView event;
@@ -41,6 +67,22 @@ public class Tests extends Activity
         date[2] = (RadioButton) findViewById((R.id.date3));
         date[3] = (RadioButton) findViewById((R.id.date4));
 
+        //вкладочки
+        TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
+        tabs.setup();
+        TabHost.TabSpec spec;
+
+        spec = tabs.newTabSpec("tag2");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator(getResources().getString(R.string.choice_2));
+        tabs.addTab(spec);
+
+        spec = tabs.newTabSpec("tag3");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator(getResources().getString(R.string.choice_1));
+        tabs.addTab(spec);
+
+        tabs.setCurrentTab(0);
 
         if (period)
         {
@@ -388,5 +430,117 @@ public class Tests extends Activity
         Random rand = new Random();
         int randDate = year + (rand.nextInt(10) - 10);
         return String.valueOf(Math.abs(randDate));
+    }
+
+    public String fromBase64(String text)
+    {
+        byte[] data = null;
+        try
+        {
+            data = text.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+
+        byte[] decodedBytes = Base64.decodeBase64(data);
+        return new String(decodedBytes);
+    }
+
+    //отдельный поток для дат
+    class getDates extends AsyncTask<String, String, Void>
+    {
+        InputStream is = null;
+        String result = "";
+
+        //получение данных (если я правильно понимаю)
+        @Override
+        protected Void doInBackground(String... params)
+        {
+            String url_select = "http://remember-everything.ml/connections/get_dates.php";
+
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url_select);
+
+            ArrayList<NameValuePair> param = new ArrayList<>();
+
+            try
+            {
+                httpPost.setEntity(new UrlEncodedFormEntity(param));
+
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+                HttpEntity httpEntity = httpResponse.getEntity();
+
+                //read content
+                is = httpEntity.getContent();
+
+            } catch (Exception e)
+            {
+                Log.e("log_tag", "Connection error " + e.toString());
+            }
+            try
+            {
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                StringBuilder sb = new StringBuilder();
+
+                String line;
+                while ((line = br.readLine()) != null)
+                {
+                    sb.append(line).append("\n");
+                }
+                is.close();
+                result = sb.toString();
+
+            } catch (Exception e)
+            {
+                // TODO: handle exception
+                Log.e("log_tag", "Error parsing data " + e.toString());
+            }
+
+            return null;
+        }
+
+        //обработка данных
+        protected void onPostExecute(Void v)
+        {
+            int local_counter = 0;
+
+            try
+            {
+                JSONArray Jarray = new JSONArray(result);
+                for (int i = 0; i < Jarray.length(); i++)
+                {
+                    JSONObject Jasonobject;
+                    Jasonobject = Jarray.getJSONObject(i);
+                    String name = Jasonobject.getString("user");
+
+                    if (user_name.equalsIgnoreCase(name))
+                    {
+                        if (local_counter == _INT_date_counter)
+                        {
+                            //date_title.setText(fromBase64(Jasonobject.getString("term")));
+                            //date_content_1.setText(Jasonobject.getString("date_1"));
+                            date_cells = Integer.valueOf(Jasonobject.getString("check"));
+                            //не трогай дурко //fillAllTheCells();
+
+                            if (Jasonobject.getString("period").equals("1"))
+                            {
+                                //date_content_2.setVisibility(View.VISIBLE);
+                                //date_content_2.setText(Jasonobject.getString("date_2"));
+                            } else
+                            {
+                                //date_content_2.setVisibility(View.INVISIBLE);
+                            }
+                        }
+
+                        local_counter++;
+                    }
+                }
+            } catch (Exception e)
+            {
+                // TODO: handle exception
+                Log.e("log_tag", "Error! " + e.toString());
+            }
+        }
     }
 }

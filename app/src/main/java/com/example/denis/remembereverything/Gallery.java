@@ -41,7 +41,6 @@ public class Gallery extends Activity
     int translate_cells;
     int definition_cells;
 
-
     //поля для определений
     TextView definition_counter;
     TextView definition_title;
