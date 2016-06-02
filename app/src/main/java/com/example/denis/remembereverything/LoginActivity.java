@@ -71,9 +71,13 @@ public class LoginActivity extends Activity
             ed.putString("user_data", temp);
 
             if (checkBox.isChecked())
+            {
                 ed.putBoolean("to_load", true);
+            }
             else
+            {
                 ed.putBoolean("to_load", false);
+            }
             ed.apply();
         }
     }
@@ -130,7 +134,8 @@ public class LoginActivity extends Activity
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -147,7 +152,8 @@ public class LoginActivity extends Activity
                 is.close();
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -192,7 +198,8 @@ public class LoginActivity extends Activity
                         break;
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());

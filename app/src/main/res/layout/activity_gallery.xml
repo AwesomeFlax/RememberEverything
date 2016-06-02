@@ -2,7 +2,8 @@
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
          android:id="@android:id/tabhost"
          android:layout_width="match_parent"
-         android:layout_height="match_parent">
+         android:layout_height="match_parent"
+         android:background="@drawable/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,7 +75,7 @@
                             android:layout_width="50dp"
                             android:layout_height="15dp"
                             android:id="@+id/cell_9"
-                            android:background="@drawable/cell_full"/>
+                            android:background="@drawable/cell_empty"/>
 
                         <ImageView
                             android:layout_width="50dp"
@@ -169,7 +170,7 @@
                             android:layout_width="50dp"
                             android:layout_height="15dp"
                             android:id="@+id/cell_5"
-                            android:background="@drawable/cell_full"/>
+                            android:background="@drawable/cell_empty"/>
 
                         <ImageView
                             android:layout_width="50dp"
@@ -284,7 +285,7 @@
                             android:layout_width="50dp"
                             android:layout_height="15dp"
                             android:id="@+id/cell_1"
-                            android:background="@drawable/cell_full"/>
+                            android:background="@drawable/cell_empty"/>
 
                         <ImageView
                             android:layout_width="50dp"

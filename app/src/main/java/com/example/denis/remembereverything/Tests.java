@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +29,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -39,19 +41,27 @@ public class Tests extends Activity
     int date_cells;
     int translate_cells;
 
+    ImageButton date_next;
+    ImageButton date_back;
+
+    Object[] monthes = new Object[12];
+
     String user_name;
     String eventText;
     TextView event;
-    String correctDate1 = "1996-09-15";
-    String correctDate2 = "2003-09-15";
+    String correctDate1; // = "1996-09-15";
+    String correctDate2; // = "2003-09-15";
     TextView question;
 
-    boolean period = true;
+    boolean period;// = true;
 
     // массив для перемешивания дат
     String[] dates = new String[4];
 
+    RadioGroup radioGr;
     RadioButton[] date = new RadioButton[4];
+
+    Integer randDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,12 +69,39 @@ public class Tests extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tests);
 
+        date_next = (ImageButton) findViewById(R.id.date_next);
+        date_back = (ImageButton) findViewById(R.id.date_back);
+        date_back.setOnClickListener(new CounterInfo());
+        date_next.setOnClickListener(new CounterInfo());
+
+        //чтобы был доступ к сети
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        //инициализация первых записей
+        new getDates().execute();
+
         Intent intent = getIntent();
         user_name = intent.getStringExtra("name");
+
+        //месяца в формате архива
+        monthes[0] = getResources().getString(R.string.january);
+        monthes[1] = getResources().getString(R.string.february);
+        monthes[2] = getResources().getString(R.string.march);
+        monthes[3] = getResources().getString(R.string.april);
+        monthes[4] = getResources().getString(R.string.may);
+        monthes[5] = getResources().getString(R.string.june);
+        monthes[6] = getResources().getString(R.string.july);
+        monthes[7] = getResources().getString(R.string.august);
+        monthes[8] = getResources().getString(R.string.september);
+        monthes[9] = getResources().getString(R.string.october);
+        monthes[10] = getResources().getString(R.string.november);
+        monthes[11] = getResources().getString(R.string.december);
 
         event = (TextView) findViewById(R.id.eventView);
         question = (TextView) findViewById(R.id.question);
 
+        radioGr = (RadioGroup) findViewById(R.id.radioGr);
         date[0] = (RadioButton) findViewById((R.id.date1));
         date[1] = (RadioButton) findViewById((R.id.date2));
         date[2] = (RadioButton) findViewById((R.id.date3));
@@ -86,110 +123,118 @@ public class Tests extends Activity
         tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
+        //event.setText(eventText);
+    }
 
-        if (period)
+    //счетчик, показывающий, какую запись показывать
+    public class CounterInfo implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View v)
         {
-            int quest = 3; //questionPeriod();
-
-            // местоположение правильного ответа
-            Random rand = new Random();
-            Integer randDate = rand.nextInt(4);
-            String corDate;
-
-            switch (quest)
+            switch (v.getId())
             {
-                case 0:
+                //дата
+                case R.id.date_next:
                 {
-                    StringBuilder strbuff1 = new StringBuilder(correctDate1);
-                    StringBuilder strbuff2 = new StringBuilder(correctDate2);
-                    Integer year3 = Integer.valueOf(strbuff2.substring(0, 4)) - Integer.valueOf(strbuff1.substring(0, 4));
+                    _INT_date_counter++;
+                    new getDates().execute();
+                    break;
+                }
 
-                    dates[randDate] = Integer.toString(year3);
-
-                    for (int i = 0; i < 4; i++)
+                //дата
+                case R.id.date_back:
+                {
+                    if (_INT_date_counter > 0)
                     {
-                        if (i != randDate)
-                            dates[i] = dateGeneratorYear(year3);
+                        _INT_date_counter--;
+                        new getDates().execute();
                     }
                     break;
                 }
-                case 1:
+
+                //перевод
+                /*case R.id.translate_next:
                 {
-                    // конвертирование даты с 1500-01-01 в 1 Января 1500
-                    corDate = convertDate(correctDate1);
-
-                    dates[randDate] = corDate;
-
-                    // заполнение остальных генерируемых дат
-                    for (int i = 0; i < 4; i++)
-                    {
-                        if (i != randDate)
-                            dates[i] = dateGenerator(correctDate1);
-                    }
+                    _INT_translate_counter++;
+                    new getTranslates().execute();
                     break;
                 }
-                case 2:
+
+                //перевод
+                case R.id.translate_back:
                 {
-                    // конвертирование даты с 1500-01-01 в 1 Января 1500
-                    corDate = convertDate(correctDate2);
-
-                    dates[randDate] = corDate;
-
-
-                    // заполнение остальных генерируемых дат
-                    for (int i = 0; i < 4; i++)
+                    if (_INT_translate_counter > 0)
                     {
-                        if (i != randDate)
-                            dates[i] = dateGenerator(correctDate2);
+                        _INT_translate_counter--;
+                        new getTranslates().execute();
                     }
                     break;
-                }
-                case 3:
-                    // конвертирование даты с 1500-01-01 в 1 Января 1500
-                    String corDate1 = convertDate(correctDate1);
-                    String corDate2 = convertDate(correctDate2);
-
-                    dates[randDate] = corDate1 + " - " + corDate2;
-
-                    // заполнение остальных генерируемых дат
-                    for (int i = 0; i < 4; i++)
-                    {
-                        if (i != randDate)
-                            dates[i] = dateGenerator(correctDate1) + " - " + dateGenerator(correctDate2);
-                    }
-                    break;
+                }*/
             }
-            date[0].setText(dates[0]);
-            date[1].setText(dates[1]);
-            date[2].setText(dates[2]);
-            date[3].setText(dates[3]);
-            //dateGeneratorPeriod();
-        } else
+        }
+    }
+
+    void onSimpleDate()
+    {
+        // конвертирование даты с 1500-01-01 в 1 Января 1500
+        String corDate = convertDate(correctDate1);
+
+        // местоположение правильного ответа
+        Random rand = new Random();
+        randDate = rand.nextInt(4);
+
+        dates[randDate] = corDate;
+
+        // заполнение остальных генерируемых дат
+        for (int i = 0; i < 4; i++)
         {
-            // конвертирование даты с 1500-01-01 в 1 Января 1500
-            String corDate = convertDate(correctDate1);
-
-            // местоположение правильного ответа
-            Random rand = new Random();
-            Integer randDate = rand.nextInt(4);
-
-            dates[randDate] = corDate;
-
-            // заполнение остальных генерируемых дат
-            for (int i = 0; i < 4; i++)
+            if (i != randDate)
             {
-                if (i != randDate)
-                    dates[i] = dateGenerator(correctDate1);
+                dates[i] = dateGenerator(correctDate1);
             }
-
-            question.setText("Укажите дату случившегося события.");
-            date[0].setText(dates[0]);
-            date[1].setText(dates[1]);
-            date[2].setText(dates[2]);
-            date[3].setText(dates[3]);
         }
 
-        event.setText(eventText);
+        question.setText("Укажите дату случившегося события.");
+        date[0].setText(dates[0]);
+        date[1].setText(dates[1]);
+        date[2].setText(dates[2]);
+        date[3].setText(dates[3]);
+    }
+
+    void onSimplePeriod(int randDate)
+    {
+        // конвертирование даты с 1500-01-01 в 1 Января 1500
+        String corDate1 = convertDate(correctDate1);
+        String corDate2 = convertDate(correctDate2);
+
+        dates[randDate] = corDate1 + " - " + corDate2;
+
+        // заполнение остальных генерируемых дат
+        for (int i = 0; i < 4; i++)
+        {
+            if (i != randDate)
+            {
+                dates[i] = dateGenerator(correctDate1) + " - " + dateGenerator(correctDate2);
+            }
+        }
+    }
+
+    void onSimpleYear(int randDate)
+    {
+        StringBuilder strbuff1 = new StringBuilder(correctDate1);
+        StringBuilder strbuff2 = new StringBuilder(correctDate2);
+        Integer year3 = Integer.valueOf(strbuff2.substring(0, 4)) - Integer.valueOf(strbuff1.substring(0, 4));
+
+        dates[randDate] = Integer.toString(year3);
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (i != randDate)
+            {
+                dates[i] = dateGeneratorYear(year3);
+            }
+        }
     }
 
     protected String dateGenerator(String corDate)
@@ -259,95 +304,36 @@ public class Tests extends Activity
     {
         Random rand = new Random();
 
-        switch (month)
+        if (month == 1)
         {
-            case 1:
-                day = rand.nextInt(32) + 1;
-                break;
-            case 2:
-                if (year % 4 == 0)
-                    day = rand.nextInt(29) + 1;
-                else
-                    day = rand.nextInt(28) + 1;
-                break;
-            case 3:
-                day = rand.nextInt(31) + 1;
-                break;
-            case 4:
-                day = rand.nextInt(30) + 1;
-                break;
-            case 5:
-                day = rand.nextInt(31) + 1;
-                break;
-            case 6:
-                day = rand.nextInt(30) + 1;
-                break;
-            case 7:
-                day = rand.nextInt(31) + 1;
-                break;
-            case 8:
-                day = rand.nextInt(31) + 1;
-                break;
-            case 9:
-                day = rand.nextInt(30) + 1;
-                break;
-            case 10:
-                day = rand.nextInt(31) + 1;
-                break;
-            case 11:
-                day = rand.nextInt(30) + 1;
-                break;
-            case 12:
-                day = rand.nextInt(31) + 1;
-                break;
+            day = rand.nextInt(32) + 1;
         }
+        else if (month == 2)
+        {
+            if (year % 4 == 0)
+            {
+                day = rand.nextInt(29) + 1;
+            }
+            else
+            {
+                day = rand.nextInt(28) + 1;
+            }
+        }
+        else if ((month == 3) || (month == 5 || (month == 7) || (month == 8) || (month == 10) || (month == 12)))
+        {
+            day = rand.nextInt(31) + 1;
+        }
+        else
+        {
+            day = rand.nextInt(30) + 1;
+        }
+
         return day;
     }
 
     String convertDateSimple(int day, int month, int year)
     {
-        String monthString = " ";
-
-        switch (month)
-        {
-            case 1:
-                monthString = "Янв";
-                break;
-            case 2:
-                monthString = "Февр";
-                break;
-            case 3:
-                monthString = "Март";
-                break;
-            case 4:
-                monthString = "Апр";
-                break;
-            case 5:
-                monthString = "Мая";
-                break;
-            case 6:
-                monthString = "Июня";
-                break;
-            case 7:
-                monthString = "Июля";
-                break;
-            case 8:
-                monthString = "Авг";
-                break;
-            case 9:
-                monthString = "Сент";
-                break;
-            case 10:
-                monthString = "Окт";
-                break;
-            case 11:
-                monthString = "Нояб";
-                break;
-            case 12:
-                monthString = "Дек";
-                break;
-        }
-
+        String monthString = monthes[month - 1].toString();
         return day + " " + monthString + " " + year;
     }
 
@@ -365,48 +351,7 @@ public class Tests extends Activity
         Integer year = Integer.valueOf(syear);
         // такой же длинный процесс
 
-        String monthString = " ";
-
-        switch (month)
-        {
-            case 1:
-                monthString = "Янв";
-                break;
-            case 2:
-                monthString = "Февр";
-                break;
-            case 3:
-                monthString = "Март";
-                break;
-            case 4:
-                monthString = "Апр";
-                break;
-            case 5:
-                monthString = "Мая";
-                break;
-            case 6:
-                monthString = "Июня";
-                break;
-            case 7:
-                monthString = "Июля";
-                break;
-            case 8:
-                monthString = "Авг";
-                break;
-            case 9:
-                monthString = "Сент";
-                break;
-            case 10:
-                monthString = "Окт";
-                break;
-            case 11:
-                monthString = "Нояб";
-                break;
-            case 12:
-                monthString = "Дек";
-                break;
-        }
-
+        String monthString = monthes[month - 1].toString();
         date = day + " " + monthString + " " + year;
         return date;
     }
@@ -441,7 +386,8 @@ public class Tests extends Activity
         try
         {
             data = text.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e)
+        }
+        catch (UnsupportedEncodingException e)
         {
             e.printStackTrace();
         }
@@ -477,7 +423,8 @@ public class Tests extends Activity
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -494,7 +441,8 @@ public class Tests extends Activity
                 is.close();
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -519,44 +467,127 @@ public class Tests extends Activity
                     long k2 = Integer.valueOf(Jasonobject.getString("check_date"));
                     long k1 = getDate();
 
-                    //тестовые данные
-                    //Toast.makeText(getApplicationContext(), String.valueOf(k1), Toast.LENGTH_LONG).show();
-                    //Toast.makeText(getApplicationContext(), String.valueOf(k2*1000), Toast.LENGTH_LONG).show();
-
                     if (user_name.equalsIgnoreCase(name))
                     {
-                        if ((local_counter == _INT_date_counter) && ((k2 - k1) > 172800000))
+                        if (local_counter == _INT_date_counter)
                         {
-                            //date_title.setText(fromBase64(Jasonobject.getString("term")));
-                            //date_content_1.setText(Jasonobject.getString("date_1"));
-                            //date_cells = Integer.valueOf(Jasonobject.getString("check"));
-                            //не трогай дурко //fillAllTheCells();
+                            if (k1 - k2 > 172800000)
+                            {
+                                event.setText(fromBase64(Jasonobject.getString("term")));
+                                correctDate1 = Jasonobject.getString("date_1");
+                                //date[0].setText(correctDate1);
+                                date_cells = Integer.valueOf(Jasonobject.getString("check_"));
+                                //не трогай дурко //fillAllTheCells();
 
-                            if (Jasonobject.getString("period").equals("1"))
-                            {
-                                //date_content_2.setVisibility(View.VISIBLE);
-                                //date_content_2.setText(Jasonobject.getString("date_2"));
-                            } else
-                            {
-                                //date_content_2.setVisibility(View.INVISIBLE);
+                                if (Jasonobject.getString("period").equals("1"))
+                                {
+                                    period = true;
+                                    correctDate2 = Jasonobject.getString("date_2");
+                                }
+                                else
+                                {
+                                    period = false;
+                                }
                             }
 
+                            local_counter++;
                         }
-
-                        local_counter++;
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());
             }
+            if (period)
+            {
+                int quest = questionPeriod();
+
+                // местоположение правильного ответа
+                Random rand = new Random();
+                Integer randDate = rand.nextInt(4);
+                String corDate;
+
+                switch (quest)
+                {
+                    case 0:
+                    {
+                        onSimpleYear(randDate);
+                        break;
+                    }
+                    case 1:
+                    {
+                        // конвертирование даты с 1500-01-01 в 1 Января 1500
+                        corDate = convertDate(correctDate1);
+
+                        dates[randDate] = corDate;
+
+                        // заполнение остальных генерируемых дат
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i != randDate)
+                            {
+                                dates[i] = dateGenerator(correctDate1);
+                            }
+                        }
+                        break;
+                    }
+                    case 2:
+                    {
+                        // конвертирование даты с 1500-01-01 в 1 Января 1500
+                        corDate = convertDate(correctDate2);
+
+                        dates[randDate] = corDate;
+
+
+                        // заполнение остальных генерируемых дат
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i != randDate)
+                            {
+                                dates[i] = dateGenerator(correctDate2);
+                            }
+                        }
+                        break;
+                    }
+                    case 3:
+                        onSimplePeriod(randDate);
+                        break;
+                }
+                date[0].setText(dates[0]);
+                date[1].setText(dates[1]);
+                date[2].setText(dates[2]);
+                date[3].setText(dates[3]);
+                //dateGeneratorPeriod();
+            }
+            else
+            {
+                onSimpleDate();
+            }
         }
     }
 
+    // БОГ, ПОСМОТРЕВ НА ЭТИ СТРОКИ, НАЧАЛ ПЛАКАТЬ.
+    // СЕЙЧАС ТЫ ДУМАЕШЬ, ЧТО СО СМЕХУ, НО НА САМОМ ДЕЛЕ
+    // ОН ТИХО СКАЗАЛ: "СЕГОДНЯ МЕНЯ ПРЕВЗОШЛИ".
     public void launchDateCheck(View v)
     {
-        new getDates().execute();
+        boolean check = false;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (date[i].isChecked() && i == randDate)
+            {
+                check = true;
+                Toast.makeText(getApplicationContext(), "Я босс", Toast.LENGTH_LONG).show();
+            }
+        }
+        if (!check)
+        {
+            Toast.makeText(getApplicationContext(), "Лошара", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public long getDate()

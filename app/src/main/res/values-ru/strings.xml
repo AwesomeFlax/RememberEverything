@@ -52,4 +52,16 @@
     <string name="translate_add">Перевод был успешно добавлен</string>
     <string name="translate">Перевести</string>
     <string name="repeat">Повторите пароль</string>
+    <string name="april">Апр</string>
+    <string name="august">Авг</string>
+    <string name="february">Фев</string>
+    <string name="december">Дек</string>
+    <string name="january">Янв</string>
+    <string name="july">Июл</string>
+    <string name="june">Июн</string>
+    <string name="march">Мар</string>
+    <string name="may">Май</string>
+    <string name="november">Ноя</string>
+    <string name="october">Окт</string>
+    <string name="september">Сен</string>
 </resources>

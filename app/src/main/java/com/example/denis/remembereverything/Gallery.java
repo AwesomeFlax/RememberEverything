@@ -271,7 +271,8 @@ public class Gallery extends Activity
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -288,7 +289,8 @@ public class Gallery extends Activity
                 is.close();
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -324,7 +326,8 @@ public class Gallery extends Activity
                         local_counter++;
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());
@@ -359,7 +362,8 @@ public class Gallery extends Activity
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -376,7 +380,8 @@ public class Gallery extends Activity
                 is.close();
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -412,7 +417,8 @@ public class Gallery extends Activity
                             {
                                 date_content_2.setVisibility(View.VISIBLE);
                                 date_content_2.setText(Jasonobject.getString("date_2"));
-                            } else
+                            }
+                            else
                             {
                                 date_content_2.setVisibility(View.INVISIBLE);
                             }
@@ -421,7 +427,8 @@ public class Gallery extends Activity
                         local_counter++;
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());
@@ -456,7 +463,8 @@ public class Gallery extends Activity
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -473,7 +481,8 @@ public class Gallery extends Activity
                 is.close();
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -515,7 +524,8 @@ public class Gallery extends Activity
                         local_counter++;
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());
@@ -531,37 +541,61 @@ public class Gallery extends Activity
         for (int k = 1; k <= definition_cells; k++)
         {
             if (k == 1)
+            {
                 cells_array[8].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 2)
+            {
                 cells_array[9].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 3)
+            {
                 cells_array[10].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 4)
+            {
                 cells_array[11].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
         }
 
         for (int k = 1; k <= translate_cells; k++)
         {
             if (k == 1)
+            {
                 cells_array[0].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 2)
+            {
                 cells_array[1].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 3)
+            {
                 cells_array[2].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 4)
+            {
                 cells_array[3].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
         }
 
         for (int k = 1; k <= date_cells; k++)
         {
             if (k == 1)
+            {
                 cells_array[4].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 2)
+            {
                 cells_array[5].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 3)
+            {
                 cells_array[6].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
             if (k == 4)
+            {
                 cells_array[7].setBackground(getResources().getDrawable(R.drawable.cell_full));
+            }
         }
     }
 
@@ -571,7 +605,8 @@ public class Gallery extends Activity
         try
         {
             data = text.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e)
+        }
+        catch (UnsupportedEncodingException e)
         {
             e.printStackTrace();
         }

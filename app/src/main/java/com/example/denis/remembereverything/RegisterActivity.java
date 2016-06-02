@@ -78,17 +78,20 @@ public class RegisterActivity extends Activity
 
                         String msg = getResources().getString(R.string.reg_success);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-                    } catch (IOException e)
+                    }
+                    catch (IOException e)
                     {
                         e.printStackTrace();
                     }
-                } else
+                }
+                else
                 {
                     if (used_name)
                     {
                         String msg = getResources().getString(R.string.used_name);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-                    } else
+                    }
+                    else
                     {
                         String msg = getResources().getString(R.string.reg_alert);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
@@ -137,7 +140,8 @@ public class RegisterActivity extends Activity
             is.close();
             result = sb.toString();
 
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             // TODO: handle exception
             Log.e("log_tag", "Error parsing data " + e.toString());
@@ -154,9 +158,12 @@ public class RegisterActivity extends Activity
                 String name = Jasonobject.getString("login");
 
                 if (name.equals(user))
+                {
                     matches = true;
+                }
             }
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             // TODO: handle exception
             Log.e("log_tag", "Error! " + e.toString());

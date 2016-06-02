@@ -365,8 +365,11 @@ public class AddActivity_Translate extends Activity implements Serializable
 
                 for (String anArray : array)
                     convertedString = convertedString + anArray + "%20";
-            } else
+            }
+            else
+            {
                 convertedString = _temp;
+            }
 
             return convertedString;
         }
@@ -397,7 +400,8 @@ public class AddActivity_Translate extends Activity implements Serializable
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -415,7 +419,8 @@ public class AddActivity_Translate extends Activity implements Serializable
 
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -439,7 +444,8 @@ public class AddActivity_Translate extends Activity implements Serializable
                 toAddInDB = true;
                 indic.setText(getResources().getString(R.string.add_to_DB));
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());
@@ -469,7 +475,8 @@ public class AddActivity_Translate extends Activity implements Serializable
 
             String msg = getResources().getString(R.string.translate_add);
             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-        } catch (IOException e)
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -491,7 +498,9 @@ public class AddActivity_Translate extends Activity implements Serializable
     public void toTranslate(View v)
     {
         if (!toAddInDB)
+        {
             new task().execute();
+        }
         else
         {
             SaveInDB();

@@ -119,7 +119,8 @@ public class AddActivity_Date extends Activity
                     _day2 = day_1.getText().toString();
                     _month2 = month_1.getText().toString();
                     _year2 = year_1.getText().toString();
-                } else
+                }
+                else
                 {
                     period = "1";
 
@@ -154,7 +155,8 @@ public class AddActivity_Date extends Activity
 
                     String msg = getResources().getString(R.string.date_add);
                     Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-                } catch (IOException e)
+                }
+                catch (IOException e)
                 {
                     e.printStackTrace();
                 }
@@ -183,7 +185,8 @@ public class AddActivity_Date extends Activity
                 date2LL.setVisibility(View.VISIBLE);
 
                 singleDate = false;
-            } else
+            }
+            else
             {
                 EditText day = (EditText) findViewById(R.id.day_2);
                 EditText month = (EditText) findViewById(R.id.month_2);

@@ -79,7 +79,8 @@ public class AddActivity_Definition extends Activity
 
                     String msg = getResources().getString(R.string.def_add);
                     Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-                } catch (IOException e)
+                }
+                catch (IOException e)
                 {
                     e.printStackTrace();
                 }

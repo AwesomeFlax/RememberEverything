@@ -52,4 +52,17 @@
     <string name="translate_add">Переклад було успішно збережено</string>
     <string name="translate">Перекласти</string>
     <string name="repeat">Повторіть пароль</string>
+    <string name="app_name" translatable="false"></string>
+    <string name="april">Кві</string>
+    <string name="august">Сер</string>
+    <string name="december">Гру</string>
+    <string name="february">Лют</string>
+    <string name="january">Січ</string>
+    <string name="july">Чер</string>
+    <string name="june">Лип</string>
+    <string name="march">Бер</string>
+    <string name="may">Тра</string>
+    <string name="november">Лис</string>
+    <string name="october">Жов</string>
+    <string name="september">Вер</string>
 </resources>
