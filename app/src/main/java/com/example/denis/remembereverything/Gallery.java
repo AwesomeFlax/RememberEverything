@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
@@ -37,9 +38,15 @@ public class Gallery extends Activity
     int _INT_date_counter = 0;
     int _INT_translate_counter = 0;
 
+    int _INT_translate_quantity;
+    int _INT_definition_quantity;
+    int _INT_date_quantity;
+
     int date_cells;
     int translate_cells;
     int definition_cells;
+
+    boolean[] check = new boolean[3];
 
     //поля для определений
     TextView definition_counter;
@@ -128,6 +135,9 @@ public class Gallery extends Activity
         flags[8] = R.drawable.sweden;
         flags[9] = R.drawable.czechrepublic;
 
+        for (int i = 0; i < 3; i++)
+            check[i] = false;
+
         cells_array[0] = (ImageView) findViewById(R.id.cell_1);
         cells_array[1] = (ImageView) findViewById(R.id.cell_2);
         cells_array[2] = (ImageView) findViewById(R.id.cell_3);
@@ -166,8 +176,14 @@ public class Gallery extends Activity
 
         //инициализация первых записей
         new getDefinitions().execute();
+        //_INT_definition_quantity = 0;
         new getDates().execute();
+        //_INT_date_quantity = 0;
         new getTranslates().execute();
+        //_INT_translate_quantity = 0;
+
+        //String temp_debug = String.valueOf(_INT_date_quantity) + "-" + String.valueOf(_INT_definition_quantity) + "-" + String.valueOf(_INT_translate_quantity);
+        //Toast.makeText(getApplicationContext(), temp_debug, Toast.LENGTH_SHORT).show();
     }
 
     //счетчик, показывающий, какую запись показывать
@@ -181,9 +197,15 @@ public class Gallery extends Activity
                 //определения
                 case R.id.definition_next:
                 {
-                    _INT_definition_counter++;
-                    new getDefinitions().execute();
-                    definition_counter.setText(String.valueOf(_INT_definition_counter + 1));
+                    if (_INT_definition_counter < _INT_definition_quantity - 1)
+                    {
+                        _INT_definition_counter++;
+                        new getDefinitions().execute();
+                        definition_counter.setText(String.valueOf(_INT_definition_counter + 1));
+
+                        //String temp_debug = String.valueOf(_INT_date_quantity) + "-" + String.valueOf(_INT_definition_quantity) + "-" + String.valueOf(_INT_translate_quantity);
+                        //Toast.makeText(getApplicationContext(), temp_debug, Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 }
 
@@ -202,9 +224,15 @@ public class Gallery extends Activity
                 //дата
                 case R.id.date_next:
                 {
-                    _INT_date_counter++;
-                    new getDates().execute();
-                    date_counter.setText(String.valueOf(_INT_date_counter + 1));
+                    if (_INT_date_counter < _INT_date_quantity - 1)
+                    {
+                        _INT_date_counter++;
+                        new getDates().execute();
+                        date_counter.setText(String.valueOf(_INT_date_counter + 1));
+
+                        //String temp_debug = String.valueOf(_INT_date_quantity) + "-" + String.valueOf(_INT_definition_quantity) + "-" + String.valueOf(_INT_translate_quantity);
+                        //Toast.makeText(getApplicationContext(), temp_debug, Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 }
 
@@ -223,9 +251,15 @@ public class Gallery extends Activity
                 //перевод
                 case R.id.translate_next:
                 {
-                    _INT_translate_counter++;
-                    new getTranslates().execute();
-                    translate_counter.setText(String.valueOf(_INT_translate_counter + 1));
+                    if (_INT_translate_counter < _INT_translate_quantity - 1)
+                    {
+                        _INT_translate_counter++;
+                        new getTranslates().execute();
+                        translate_counter.setText(String.valueOf(_INT_translate_counter + 1));
+
+                        //String temp_debug = String.valueOf(_INT_date_quantity) + "-" + String.valueOf(_INT_definition_quantity) + "-" + String.valueOf(_INT_translate_quantity);
+                        //Toast.makeText(getApplicationContext(), temp_debug, Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 }
 
@@ -307,19 +341,37 @@ public class Gallery extends Activity
             try
             {
                 JSONArray Jarray = new JSONArray(result);
+
+                _INT_definition_quantity = 0;
+
+                //подсчет количества записей
                 for (int i = 0; i < Jarray.length(); i++)
                 {
-                    JSONObject Jasonobject;
-                    Jasonobject = Jarray.getJSONObject(i);
-                    String name = Jasonobject.getString("user");
+                    //_INT_definition_quantity = 0;
+
+                    JSONObject Jasonobject_definition;
+                    Jasonobject_definition = Jarray.getJSONObject(i);
+                    String name = Jasonobject_definition.getString("user");
+
+                    if (user_name.equalsIgnoreCase(name))
+                    {
+                        _INT_definition_quantity++;
+                    }
+                }
+
+                for (int i = 0; i < Jarray.length(); i++)
+                {
+                    JSONObject Jasonobject_definition;
+                    Jasonobject_definition = Jarray.getJSONObject(i);
+                    String name = Jasonobject_definition.getString("user");
 
                     if (user_name.equalsIgnoreCase(name))
                     {
                         if (local_counter == _INT_definition_counter)
                         {
-                            definition_title.setText(fromBase64(Jasonobject.getString("term")));
-                            definition_content.setText(fromBase64(Jasonobject.getString("definition")));
-                            definition_cells = Integer.valueOf(Jasonobject.getString("check_"));
+                            definition_title.setText(fromBase64(Jasonobject_definition.getString("term")));
+                            definition_content.setText(fromBase64(Jasonobject_definition.getString("definition")));
+                            definition_cells = Integer.valueOf(Jasonobject_definition.getString("check_"));
                             fillAllTheCells();
                         }
 
@@ -398,25 +450,43 @@ public class Gallery extends Activity
             try
             {
                 JSONArray Jarray = new JSONArray(result);
+
+                _INT_date_quantity = 0;
+
+                //подсчет количества записей
                 for (int i = 0; i < Jarray.length(); i++)
                 {
-                    JSONObject Jasonobject;
-                    Jasonobject = Jarray.getJSONObject(i);
-                    String name = Jasonobject.getString("user");
+                    //_INT_date_quantity = 0;
+
+                    JSONObject Jasonobject_date;
+                    Jasonobject_date = Jarray.getJSONObject(i);
+                    String name = Jasonobject_date.getString("user");
+
+                    if (user_name.equalsIgnoreCase(name))
+                    {
+                        _INT_date_quantity++;
+                    }
+                }
+
+                for (int i = 0; i < Jarray.length(); i++)
+                {
+                    JSONObject Jasonobject_date;
+                    Jasonobject_date = Jarray.getJSONObject(i);
+                    String name = Jasonobject_date.getString("user");
 
                     if (user_name.equalsIgnoreCase(name))
                     {
                         if (local_counter == _INT_date_counter)
                         {
-                            date_title.setText(fromBase64(Jasonobject.getString("term")));
-                            date_content_1.setText(Jasonobject.getString("date_1"));
-                            date_cells = Integer.valueOf(Jasonobject.getString("check_"));
+                            date_title.setText(fromBase64(Jasonobject_date.getString("term")));
+                            date_content_1.setText(Jasonobject_date.getString("date_1"));
+                            date_cells = Integer.valueOf(Jasonobject_date.getString("check_"));
                             fillAllTheCells();
 
-                            if (Jasonobject.getString("period").equals("1"))
+                            if (Jasonobject_date.getString("period").equals("1"))
                             {
                                 date_content_2.setVisibility(View.VISIBLE);
-                                date_content_2.setText(Jasonobject.getString("date_2"));
+                                date_content_2.setText(Jasonobject_date.getString("date_2"));
                             }
                             else
                             {
@@ -499,25 +569,43 @@ public class Gallery extends Activity
             try
             {
                 JSONArray Jarray = new JSONArray(result);
+
+                _INT_translate_quantity = 0;
+
+                //подсчет количества записей
                 for (int i = 0; i < Jarray.length(); i++)
                 {
-                    JSONObject Jasonobject;
-                    Jasonobject = Jarray.getJSONObject(i);
-                    String name = Jasonobject.getString("user");
+                    //_INT_translate_quantity = 0;
+
+                    JSONObject Jasonobject_translate;
+                    Jasonobject_translate = Jarray.getJSONObject(i);
+                    String name = Jasonobject_translate.getString("user");
+
+                    if (user_name.equalsIgnoreCase(name))
+                    {
+                        _INT_translate_quantity++;
+                    }
+                }
+
+                for (int i = 0; i < Jarray.length(); i++)
+                {
+                    JSONObject Jasonobject_translate;
+                    Jasonobject_translate = Jarray.getJSONObject(i);
+                    String name = Jasonobject_translate.getString("user");
 
                     if (user_name.equalsIgnoreCase(name))
                     {
                         if (local_counter == _INT_translate_counter)
                         {
-                            translate_title.setText(fromBase64(Jasonobject.getString("word_original")));
-                            translate_content_1.setText(fromBase64(Jasonobject.getString("word_translate")));
+                            translate_title.setText(fromBase64(Jasonobject_translate.getString("word_original")));
+                            translate_content_1.setText(fromBase64(Jasonobject_translate.getString("word_translate")));
 
-                            String index_1 = Jasonobject.getString("lang_original");
-                            String index_2 = Jasonobject.getString("lang_translate");
+                            String index_1 = Jasonobject_translate.getString("lang_original");
+                            String index_2 = Jasonobject_translate.getString("lang_translate");
 
                             flag_1.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_1)]));
                             flag_2.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_2)]));
-                            translate_cells = Integer.valueOf(Jasonobject.getString("check_"));
+                            translate_cells = Integer.valueOf(Jasonobject_translate.getString("check_"));
                             fillAllTheCells();
                         }
 

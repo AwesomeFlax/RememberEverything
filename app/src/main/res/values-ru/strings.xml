@@ -64,4 +64,10 @@
     <string name="november">Ноя</string>
     <string name="october">Окт</string>
     <string name="september">Сен</string>
+    <string name="question_1">Сколько лет длилось указанное событие?</string>
+    <string name="question_2">Когда началось указанное событие?</string>
+    <string name="question_3">Когда закончилось указанное событие?</string>
+    <string name="question_4">Укажите период, в котором заключено данное событие</string>
+    <string name="question_single">Когда произошло данное событие?</string>
+    <string name="app_name">Remember Everything</string>
 </resources>

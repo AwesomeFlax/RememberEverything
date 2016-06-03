@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
@@ -22,15 +25,18 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 public class Tests extends Activity
@@ -38,28 +44,34 @@ public class Tests extends Activity
     int _INT_date_counter = 0;
     int _INT_translate_counter = 0;
 
+    String date_ID;
+    String translate_ID;
+
     int date_cells;
     int translate_cells;
 
     ImageButton date_next;
-    ImageButton date_back;
+    ImageButton date_previous;
 
     Object[] monthes = new Object[12];
 
     String user_name;
     String eventText;
-    TextView event;
     String correctDate1; // = "1996-09-15";
     String correctDate2; // = "2003-09-15";
+
     TextView question;
+    TextView event;
 
     boolean period;// = true;
+    int NotesQuantity = 0;
 
     // массив для перемешивания дат
     String[] dates = new String[4];
 
     RadioGroup radioGr;
     RadioButton[] date = new RadioButton[4];
+    Button send_button_Date;
 
     Integer randDate;
 
@@ -70,19 +82,19 @@ public class Tests extends Activity
         setContentView(R.layout.activity_tests);
 
         date_next = (ImageButton) findViewById(R.id.date_next);
-        date_back = (ImageButton) findViewById(R.id.date_back);
-        date_back.setOnClickListener(new CounterInfo());
+        date_previous = (ImageButton) findViewById(R.id.date_back);
+        date_previous.setOnClickListener(new CounterInfo());
         date_next.setOnClickListener(new CounterInfo());
 
         //чтобы был доступ к сети
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        //инициализация первых записей
-        new getDates().execute();
-
         Intent intent = getIntent();
         user_name = intent.getStringExtra("name");
+
+        //инициализация первых записей (или нет)
+        new checkTestsAvailable().execute();
 
         //месяца в формате архива
         monthes[0] = getResources().getString(R.string.january);
@@ -107,6 +119,8 @@ public class Tests extends Activity
         date[2] = (RadioButton) findViewById((R.id.date3));
         date[3] = (RadioButton) findViewById((R.id.date4));
 
+        send_button_Date = (Button) findViewById(R.id.ok);
+
         //вкладочки
         TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
         tabs.setup();
@@ -124,6 +138,57 @@ public class Tests extends Activity
 
         tabs.setCurrentTab(0);
         //event.setText(eventText);
+
+        send_button_Date.setOnClickListener(new View.OnClickListener()
+        {
+            InputStream is = null;
+
+            @Override
+            public void onClick(View arg0)
+            {
+                List<NameValuePair> nameValuePairs = new ArrayList<>(1);
+
+                if (date[randDate].isChecked())
+                {
+                    nameValuePairs.add(new BasicNameValuePair("id", date_ID));
+                    nameValuePairs.add(new BasicNameValuePair("mark", String.valueOf(date_cells + 1)));
+                }
+                else
+                {
+                    nameValuePairs.add(new BasicNameValuePair("id", date_ID));
+                    nameValuePairs.add(new BasicNameValuePair("mark", String.valueOf(date_cells)));
+                }
+                try
+                {
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost("http://remember-everything.ml/connections/update_progress_date.php");
+                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    HttpResponse response = httpClient.execute(httpPost);
+                    HttpEntity entity = response.getEntity();
+                    is = entity.getContent();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+                //if (NotesQuantity != 1)
+                new checkTestsAvailable().execute();
+                //else
+                //globalCleanDate();
+            }
+        });
+    }
+
+    void globalCleanDate()
+    {
+        date_next.setVisibility(View.INVISIBLE);
+        date_previous.setVisibility(View.INVISIBLE);
+        FrameLayout main_part_date = (FrameLayout) findViewById(R.id.main_part_date);
+        main_part_date.setVisibility(View.INVISIBLE);
+
+        LinearLayout tab3 = (LinearLayout) findViewById(R.id.tab3);
+        tab3.setBackground(getResources().getDrawable(R.drawable.relax));
     }
 
     //счетчик, показывающий, какую запись показывать
@@ -137,8 +202,11 @@ public class Tests extends Activity
                 //дата
                 case R.id.date_next:
                 {
-                    _INT_date_counter++;
-                    new getDates().execute();
+                    if (_INT_date_counter < NotesQuantity - 1)
+                    {
+                        _INT_date_counter++;
+                        new getDates().execute();
+                    }
                     break;
                 }
 
@@ -195,7 +263,8 @@ public class Tests extends Activity
             }
         }
 
-        question.setText("Укажите дату случившегося события.");
+        question.setText(getResources().getString(R.string.question_single));
+
         date[0].setText(dates[0]);
         date[1].setText(dates[1]);
         date[2].setText(dates[2]);
@@ -304,11 +373,7 @@ public class Tests extends Activity
     {
         Random rand = new Random();
 
-        if (month == 1)
-        {
-            day = rand.nextInt(32) + 1;
-        }
-        else if (month == 2)
+        if (month == 2)
         {
             if (year % 4 == 0)
             {
@@ -319,7 +384,7 @@ public class Tests extends Activity
                 day = rand.nextInt(28) + 1;
             }
         }
-        else if ((month == 3) || (month == 5 || (month == 7) || (month == 8) || (month == 10) || (month == 12)))
+        else if ((month == 1) || (month == 3) || (month == 5 || (month == 7) || (month == 8) || (month == 10) || (month == 12)))
         {
             day = rand.nextInt(31) + 1;
         }
@@ -340,7 +405,7 @@ public class Tests extends Activity
     String convertDate(String date)
     {
         // конвертируем со стринга в интежеры
-        StringBuilder strbuff = new StringBuilder(date);
+        StringBuffer strbuff = new StringBuffer(date);
 
         String sday = strbuff.substring(8, 10);
         String smonth = strbuff.substring(5, 7);
@@ -363,10 +428,10 @@ public class Tests extends Activity
         Random rand = new Random();
         int randQuest = rand.nextInt(4);
 
-        questions[0] = "Сколько лет длилось указанное событие?";
-        questions[1] = "Когда началось указанное событие?";
-        questions[2] = "Когда закончилось указанное событие?";
-        questions[3] = "Укажите период, в котором заключено данное событие.";
+        questions[0] = getResources().getString(R.string.question_1);
+        questions[1] = getResources().getString(R.string.question_2);
+        questions[2] = getResources().getString(R.string.question_3);
+        questions[3] = getResources().getString(R.string.question_4);
 
         question.setText(questions[randQuest]);
 
@@ -394,6 +459,113 @@ public class Tests extends Activity
 
         byte[] decodedBytes = Base64.decodeBase64(data);
         return new String(decodedBytes);
+    }
+
+    //проверяем, остались ли ещё даты
+    class checkTestsAvailable extends AsyncTask<String, String, Void>
+    {
+        InputStream is = null;
+        String result = "";
+
+        //получение данных (если я правильно понимаю)
+        @Override
+        protected Void doInBackground(String... params)
+        {
+            String url_select = "http://remember-everything.ml/connections/get_dates.php";
+
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url_select);
+
+            ArrayList<NameValuePair> param = new ArrayList<>();
+
+            try
+            {
+                httpPost.setEntity(new UrlEncodedFormEntity(param));
+
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+                HttpEntity httpEntity = httpResponse.getEntity();
+
+                //read content
+                is = httpEntity.getContent();
+
+            }
+            catch (Exception e)
+            {
+                Log.e("log_tag", "Connection error " + e.toString());
+            }
+            try
+            {
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                StringBuilder sb = new StringBuilder();
+
+                String line;
+                while ((line = br.readLine()) != null)
+                {
+                    sb.append(line).append("\n");
+                }
+                is.close();
+                result = sb.toString();
+
+            }
+            catch (Exception e)
+            {
+                // TODO: handle exception
+                Log.e("log_tag", "Error parsing data " + e.toString());
+            }
+
+            return null;
+        }
+
+        //обработка данных
+        protected void onPostExecute(Void v)
+        {
+            try
+            {
+                JSONArray Jarray = new JSONArray(result);
+
+                NotesQuantity = 0;
+
+                //подсчет количества записей
+                for (int i = 0; i < Jarray.length(); i++)
+                {
+                    JSONObject Jasonobject;
+                    Jasonobject = Jarray.getJSONObject(i);
+                    String name = Jasonobject.getString("user");
+
+                    int k3 = Integer.valueOf(Jasonobject.getString("check_"));
+                    long k2 = Integer.valueOf(Jasonobject.getString("check_date"));
+                    k2 = k2 * 1000;
+                    long k1 = getDate();
+
+                    if (((k1 - k2) > 172800000) && (k3 < 4))
+                    {
+                        if ((k1 - k2) > 172800000)
+                        {
+                            NotesQuantity++;
+                        }
+                    }
+                }
+
+                if (NotesQuantity > 0)
+                {
+                    new getDates().execute();
+                    radioGr.clearCheck();
+                }
+                else
+                {
+                    globalCleanDate();
+                }
+            }
+
+            catch (
+                    Exception e
+                    )
+
+            {
+                // TODO: handle exception
+                Log.e("log_tag", "Error! " + e.toString());
+            }
+        }
     }
 
     //отдельный поток для дат
@@ -459,20 +631,48 @@ public class Tests extends Activity
             try
             {
                 JSONArray Jarray = new JSONArray(result);
+
+                NotesQuantity = 0;
+
+                //подсчет количества записей
                 for (int i = 0; i < Jarray.length(); i++)
                 {
                     JSONObject Jasonobject;
                     Jasonobject = Jarray.getJSONObject(i);
                     String name = Jasonobject.getString("user");
+
+                    int k3 = Integer.valueOf(Jasonobject.getString("check_"));
                     long k2 = Integer.valueOf(Jasonobject.getString("check_date"));
+                    k2 = k2 * 1000;
                     long k1 = getDate();
 
                     if (user_name.equalsIgnoreCase(name))
                     {
-                        if (local_counter == _INT_date_counter)
+                        if (((k1 - k2) > 172800000) && (k3 < 4))
                         {
-                            if (k1 - k2 > 172800000)
+                            NotesQuantity++;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < Jarray.length(); i++)
+                {
+                    JSONObject Jasonobject;
+                    Jasonobject = Jarray.getJSONObject(i);
+                    String name = Jasonobject.getString("user");
+
+                    int k3 = Integer.valueOf(Jasonobject.getString("check_"));
+                    long k2 = Integer.valueOf(Jasonobject.getString("check_date"));
+                    k2 = k2 * 1000;
+                    long k1 = getDate();
+
+                    if (user_name.equalsIgnoreCase(name))
+                    {
+                        if (((k1 - k2) > 172800000) && (k3 < 4))
+                        {
+                            if (local_counter == _INT_date_counter)
                             {
+                                date_ID = Jasonobject.getString("id");
                                 event.setText(fromBase64(Jasonobject.getString("term")));
                                 correctDate1 = Jasonobject.getString("date_1");
                                 //date[0].setText(correctDate1);
@@ -565,27 +765,6 @@ public class Tests extends Activity
             {
                 onSimpleDate();
             }
-        }
-    }
-
-    // БОГ, ПОСМОТРЕВ НА ЭТИ СТРОКИ, НАЧАЛ ПЛАКАТЬ.
-    // СЕЙЧАС ТЫ ДУМАЕШЬ, ЧТО СО СМЕХУ, НО НА САМОМ ДЕЛЕ
-    // ОН ТИХО СКАЗАЛ: "СЕГОДНЯ МЕНЯ ПРЕВЗОШЛИ".
-    public void launchDateCheck(View v)
-    {
-        boolean check = false;
-
-        for (int i = 0; i < 4; i++)
-        {
-            if (date[i].isChecked() && i == randDate)
-            {
-                check = true;
-                Toast.makeText(getApplicationContext(), "Я босс", Toast.LENGTH_LONG).show();
-            }
-        }
-        if (!check)
-        {
-            Toast.makeText(getApplicationContext(), "Лошара", Toast.LENGTH_LONG).show();
         }
 
     }

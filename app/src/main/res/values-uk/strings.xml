@@ -52,7 +52,7 @@
     <string name="translate_add">Переклад було успішно збережено</string>
     <string name="translate">Перекласти</string>
     <string name="repeat">Повторіть пароль</string>
-    <string name="app_name" translatable="false"></string>
+    <string name="app_name" translatable="false">Remember Everything</string>
     <string name="april">Кві</string>
     <string name="august">Сер</string>
     <string name="december">Гру</string>
@@ -65,4 +65,9 @@
     <string name="november">Лис</string>
     <string name="october">Жов</string>
     <string name="september">Вер</string>
+    <string name="question_1">Скільки років тривала зазначена подія?</string>
+    <string name="question_2">Коли почалася зазначена подія?</string>
+    <string name="question_3">Коли закінчилася зазначена подія?</string>
+    <string name="question_4">Вкажіть період, у якому відбувалася дана подія</string>
+    <string name="question_single">Коли відбулася дана подія?</string>
 </resources>

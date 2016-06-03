@@ -14,7 +14,7 @@
 
         <ImageView
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:id="@+id/logotype"
             android:background="@drawable/logo_menu"
             android:layout_weight="1"
@@ -23,7 +23,7 @@
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:text="add note"
             android:id="@+id/note"
             android:layout_gravity="center_horizontal"
@@ -42,7 +42,7 @@
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:text="gallery"
             android:id="@+id/gallery"
             android:layout_gravity="center_horizontal"
@@ -54,7 +54,7 @@
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:text="add date"
             android:id="@+id/date"
             android:layout_gravity="center_horizontal"
@@ -74,7 +74,7 @@
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:text="tests"
             android:id="@+id/test"
             android:layout_gravity="center_horizontal"
@@ -86,7 +86,7 @@
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:text="add translate"
             android:id="@+id/translate"
             android:layout_column="1"

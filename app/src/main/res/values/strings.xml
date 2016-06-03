@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Remember Everything</string>
+    <string name="app_name">Remember Everything</string>
 
     <string name="login">Login</string>
     <string name="enter">Enter</string>
@@ -68,6 +68,12 @@
     <string name="october">Oct</string>
     <string name="november">Nov</string>
     <string name="december">Dec</string>
+
+    <string name="question_1">How many years the specified event lasted?</string>
+    <string name="question_2">When this event started?</string>
+    <string name="question_3">When the event was over?</string>
+    <string name="question_4">Specify the period in which concluded the event</string>
+    <string name="question_single">When this event happened?</string>
 
     <string name="from">From</string>
     <string name="to">to</string>
