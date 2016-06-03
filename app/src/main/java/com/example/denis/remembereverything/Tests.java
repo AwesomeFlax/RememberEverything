@@ -41,39 +41,30 @@ import java.util.Random;
 
 public class Tests extends Activity
 {
+    int NotesQuantity = 0;
     int _INT_date_counter = 0;
-    int _INT_translate_counter = 0;
-
-    String date_ID;
-    String translate_ID;
-
     int date_cells;
-    int translate_cells;
+    int randDate;
 
+    Button send_button_Date;
     ImageButton date_next;
     ImageButton date_previous;
 
     Object[] monthes = new Object[12];
 
+    String date_ID;
     String user_name;
-    String eventText;
-    String correctDate1; // = "1996-09-15";
-    String correctDate2; // = "2003-09-15";
+    String correctDate1;                // = "1996-09-15";
+    String correctDate2;                // = "2003-09-15";
+    String[] dates = new String[4];     // массив для перемешивания дат
 
     TextView question;
     TextView event;
 
-    boolean period;// = true;
-    int NotesQuantity = 0;
-
-    // массив для перемешивания дат
-    String[] dates = new String[4];
+    boolean period;                     // = true;
 
     RadioGroup radioGr;
     RadioButton[] date = new RadioButton[4];
-    Button send_button_Date;
-
-    Integer randDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -220,25 +211,6 @@ public class Tests extends Activity
                     }
                     break;
                 }
-
-                //перевод
-                /*case R.id.translate_next:
-                {
-                    _INT_translate_counter++;
-                    new getTranslates().execute();
-                    break;
-                }
-
-                //перевод
-                case R.id.translate_back:
-                {
-                    if (_INT_translate_counter > 0)
-                    {
-                        _INT_translate_counter--;
-                        new getTranslates().execute();
-                    }
-                    break;
-                }*/
             }
         }
     }
