@@ -14,24 +14,20 @@
 
         <ImageView
             android:layout_width="170dp"
-            android:layout_height="190dp"
+            android:layout_height="215dp"
             android:id="@+id/logotype"
             android:background="@drawable/logo_menu"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_weight="1"/>
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="190dp"
+            android:layout_height="215dp"
             android:text="add note"
             android:id="@+id/note"
             android:layout_gravity="center_horizontal"
             android:layout_column="1"
             android:layout_weight="1"
-            android:background="@drawable/_note"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:background="@drawable/_note"/>
     </LinearLayout>
 
     <LinearLayout
@@ -42,27 +38,23 @@
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="190dp"
+            android:layout_height="215dp"
             android:text="gallery"
             android:id="@+id/gallery"
             android:layout_gravity="center_horizontal"
             android:layout_column="0"
             android:layout_weight="1"
-            android:background="@drawable/_gallery"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:background="@drawable/_gallery"/>
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="190dp"
+            android:layout_height="215dp"
             android:text="add date"
             android:id="@+id/date"
             android:layout_gravity="center_horizontal"
             android:layout_column="0"
             android:layout_weight="1"
-            android:background="@drawable/_callendar"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:background="@drawable/_callendar"/>
 
     </LinearLayout>
 
@@ -74,27 +66,23 @@
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="190dp"
+            android:layout_height="215dp"
             android:text="tests"
             android:id="@+id/test"
             android:layout_gravity="center_horizontal"
             android:layout_column="1"
             android:layout_weight="1"
-            android:background="@drawable/_test"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:background="@drawable/_test"/>
 
         <ImageButton
             android:layout_width="170dp"
-            android:layout_height="190dp"
+            android:layout_height="215dp"
             android:text="add translate"
             android:id="@+id/translate"
             android:layout_column="1"
             android:background="@drawable/_translate"
             android:layout_rowWeight="0"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
