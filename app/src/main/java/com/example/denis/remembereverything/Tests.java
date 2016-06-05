@@ -329,6 +329,12 @@ public class Tests extends Activity
                     if (_INT_translate_counter < NotesQuantity_2 - 1)
                     {
                         _INT_translate_counter++;
+                        for (int i = 0; i < 8; i++)
+                            buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
+                        for (int i = 0; i < 8; i++)
+                            buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
+                        for (int i = 0; i < 8; i++)
+                            buttons[i].setVisibility(View.INVISIBLE);
                         new getTranslates().execute();
                     }
                     break;
@@ -340,6 +346,10 @@ public class Tests extends Activity
                     if (_INT_translate_counter > 0)
                     {
                         _INT_translate_counter--;
+                        for (int i = 0; i < 8; i++)
+                            buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
+                        for (int i = 0; i < 8; i++)
+                            buttons[i].setVisibility(View.INVISIBLE);
                         new getTranslates().execute();
                     }
                     break;
@@ -923,7 +933,7 @@ public class Tests extends Activity
         for (int i = 0; i < length; i++)
             indexAll[i] = rand.nextInt(length);
 
-        for (int k = 0; k < length; k++)
+        /*for (int k = 0; k < length; k++)
             for (int j = k + 1; j < length; j++)
                 if (indexAll[k] == indexAll[j] || tmp[indexAll[k]] == ' ')
                 {
@@ -932,10 +942,22 @@ public class Tests extends Activity
                         indexAll[k] = rand.nextInt(length);
                     }
                     while (indexAll[k] == indexAll[j] || tmp[indexAll[k]] == ' ');
-                }
+                }*/
+        for (int i = 0; i < length; i++)
+        {
+            indexAll[i] = rand.nextInt(length);
+            if (i > 0)
+                for (int j = 0; j < i; j++)
+                    if (indexAll[i] == indexAll[j])
+                    {
+                        i--;
+                        break;
+                    }
+        }
 
         for (int i = 0; i < length; i++)
             buttons[i].setText(String.valueOf(tmp[indexAll[i]]));
+
 
 
         tmp_trans = replaceCharAt(trans, indexAll[0], '_');
@@ -956,7 +978,7 @@ public class Tests extends Activity
         for (int i = 0; i < 4; i++)
             indexFour[i] = rand.nextInt(length);
 
-        for (int k = 0; k < 4; k++)
+        /*for (int k = 0; k < 4; k++)
             for (int j = k + 1; j < 4; j++)
                 if (indexFour[k] == indexFour[j] || tmp[indexFour[k]] == ' ')
                 {
@@ -965,8 +987,19 @@ public class Tests extends Activity
                         indexFour[k] = rand.nextInt(length);
                     }
                     while (indexFour[k] == indexFour[j] || tmp[indexFour[k]] == ' ');
-                }
+                }*/
 
+        for (int i = 0; i < 4; i++)
+        {
+            indexFour[i] = rand.nextInt(length);
+            if (i > 0)
+                for (int j = 0; j < i; j++)
+                    if (indexFour[i] == indexFour[j])
+                    {
+                        i--;
+                        break;
+                    }
+        }
         for (int i = 0; i < 4; i++)
             buttons[i].setText(String.valueOf(tmp[indexFour[i]]));
 
@@ -988,7 +1021,7 @@ public class Tests extends Activity
         for (int i = 0; i < 6; i++)
             indexSix[i] = rand.nextInt(length);
 
-        for (int k = 0; k < 6; k++)
+        /*for (int k = 0; k < 6; k++)
             for (int j = k + 1; j < 6; j++)
                 if (indexSix[k] == indexSix[j] || tmp[indexSix[k]] == ' ')
                 {
@@ -997,7 +1030,19 @@ public class Tests extends Activity
                         indexSix[k] = rand.nextInt(length);
                     }
                     while (indexSix[k] == indexSix[j] || tmp[indexSix[k]] == ' ');
-                }
+                }*/
+
+        for (int i = 0; i < 6; i++)
+        {
+            indexSix[i] = rand.nextInt(length);
+            if (i > 0)
+                for (int j = 0; j < i; j++)
+                    if (indexSix[i] == indexSix[j])
+                    {
+                        i--;
+                        break;
+                    }
+        }
 
         for (int i = 0; i < 6; i++)
             buttons[i].setText(String.valueOf(tmp[indexSix[i]]));
@@ -1020,7 +1065,7 @@ public class Tests extends Activity
         for (int i = 0; i < 8; i++)
             indexEight[i] = rand.nextInt(length);
 
-        for (int k = 0; k < 8; k++)
+        /*for (int k = 0; k < 8; k++)
             for (int j = k + 1; j < 8; j++)
                 if (indexEight[k] == indexEight[j] || tmp[indexEight[k]] == ' ')
                 {
@@ -1029,7 +1074,19 @@ public class Tests extends Activity
                         indexEight[k] = rand.nextInt(length);
                     }
                     while (indexEight[k] == indexEight[j] || tmp[indexEight[k]] == ' ');
-                }
+                }*/
+
+        for (int i = 0; i < 8; i++)
+        {
+            indexEight[i] = rand.nextInt(length);
+            if (i > 0)
+                for (int j = 0; j < i; j++)
+                    if (indexEight[i] == indexEight[j])
+                    {
+                        i--;
+                        break;
+                    }
+        }
 
         for (int i = 0; i < 8; i++)
             buttons[i].setText(String.valueOf(tmp[indexEight[i]]));
@@ -1085,6 +1142,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[0], '_');
                         press[0] = false;
+                        buttons[0].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1098,6 +1156,7 @@ public class Tests extends Activity
                         }
                         press[0] = true;
                         pos[0] = position;
+                        buttons[0].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1106,6 +1165,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[1], '_');
                         press[1] = false;
+                        buttons[1].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1119,6 +1179,7 @@ public class Tests extends Activity
                         }
                         press[1] = true;
                         pos[1] = position;
+                        buttons[1].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1127,6 +1188,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[2], '_');
                         press[2] = false;
+                        buttons[2].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1140,6 +1202,7 @@ public class Tests extends Activity
                         }
                         press[2] = true;
                         pos[2] = position;
+                        buttons[2].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1148,6 +1211,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[3], '_');
                         press[3] = false;
+                        buttons[3].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1161,6 +1225,7 @@ public class Tests extends Activity
                         }
                         press[3] = true;
                         pos[3] = position;
+                        buttons[3].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1169,6 +1234,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[4], '_');
                         press[4] = false;
+                        buttons[4].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1182,6 +1248,7 @@ public class Tests extends Activity
                         }
                         press[4] = true;
                         pos[4] = position;
+                        buttons[4].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1190,6 +1257,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[5], '_');
                         press[5] = false;
+                        buttons[5].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1203,6 +1271,7 @@ public class Tests extends Activity
                         }
                         press[5] = true;
                         pos[5] = position;
+                        buttons[5].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1211,6 +1280,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[6], '_');
                         press[6] = false;
+                        buttons[6].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1224,6 +1294,7 @@ public class Tests extends Activity
                         }
                         press[6] = true;
                         pos[6] = position;
+                        buttons[6].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1232,6 +1303,7 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[7], '_');
                         press[7] = false;
+                        buttons[7].setBackground(getResources().getDrawable(R.drawable.let_btn));
                     }
                     else
                     {
@@ -1245,6 +1317,7 @@ public class Tests extends Activity
                         }
                         press[7] = true;
                         pos[7] = position;
+                        buttons[7].setBackground(getResources().getDrawable(R.drawable.let_btn_press));
                     }
                     tv_trans.setText(tmp_trans);
                     break;
@@ -1374,7 +1447,7 @@ public class Tests extends Activity
         InputStream is = null;
         String result = "";
 
-        //получение данных (если я правильно понимаю)
+        //получение данных
         @Override
         protected Void doInBackground(String... params)
         {
@@ -1477,6 +1550,47 @@ public class Tests extends Activity
                                 //flag_1.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_1)]));
                                 //flag_2.setBackground(getResources().getDrawable((Integer) flags[Integer.valueOf(index_2)]));
                                 translate_cells = Integer.valueOf(Jasonobject_translate.getString("check_"));
+
+                                trans = trans.toLowerCase();
+                                words = words.toLowerCase();
+
+                                length = trans.length();
+
+                                letters = trans.toCharArray();
+
+                                tv_words.setText(words);
+                                tv_trans.setText(trans);
+
+                                if (length < 9)
+                                {
+                                    RemoveAll(letters, length);
+
+                                    for (int j = 0; j < length; j++)
+                                        buttons[j].setVisibility(View.VISIBLE);
+                                }
+
+
+                                if (length > 8 && length < 13)
+                                {
+                                    RemoveFour(letters, length);
+                                    for (int j = 0; j < 4; j++)
+                                        buttons[j].setVisibility(View.VISIBLE);
+                                }
+
+
+                                if (length > 12 && length < 21)
+                                {
+                                    RemoveSix(letters, length);
+                                    for (int j = 0; j < 6; j++)
+                                        buttons[j].setVisibility(View.VISIBLE);
+                                }
+
+                                if (length > 20)
+                                {
+                                    RemoveEight(letters, length);
+                                    for (int j = 0; j < 8; j++)
+                                        buttons[j].setVisibility(View.VISIBLE);
+                                }
                             }
 
                             local_counter++;
@@ -1493,46 +1607,7 @@ public class Tests extends Activity
             //Toast.makeText(getApplicationContext(), trans, Toast.LENGTH_SHORT).show();
             //Toast.makeText(getApplicationContext(), words, Toast.LENGTH_SHORT).show();
 
-            trans = trans.toLowerCase();
-            words = words.toLowerCase();
 
-            length = trans.length();
-
-            letters = trans.toCharArray();
-
-            tv_words.setText(words);
-            tv_trans.setText(trans);
-
-            if (length < 9)
-            {
-                RemoveAll(letters, length);
-
-                for (int i = 0; i < length; i++)
-                    buttons[i].setVisibility(View.VISIBLE);
-            }
-
-
-            if (length > 8 && length < 13)
-            {
-                RemoveFour(letters, length);
-                for (int i = 0; i < 4; i++)
-                    buttons[i].setVisibility(View.VISIBLE);
-            }
-
-
-            if (length > 12 && length < 21)
-            {
-                RemoveSix(letters, length);
-                for (int i = 0; i < 6; i++)
-                    buttons[i].setVisibility(View.VISIBLE);
-            }
-
-            if (length > 20)
-            {
-                RemoveEight(letters, length);
-                for (int i = 0; i < 8; i++)
-                    buttons[i].setVisibility(View.VISIBLE);
-            }
 
         }
     }
