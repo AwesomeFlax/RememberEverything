@@ -32,8 +32,6 @@
 
         <activity android:name=".Tests"/>
 
-        <activity android:name=".Tests2"/>
-
     </application>
 
 </manifest>

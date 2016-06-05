@@ -17,7 +17,8 @@
             android:layout_height="215dp"
             android:id="@+id/logotype"
             android:background="@drawable/logo_menu"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            />
 
         <ImageButton
             android:layout_width="170dp"
@@ -27,7 +28,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_column="1"
             android:layout_weight="1"
-            android:background="@drawable/_note"/>
+            android:background="@drawable/_note"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +46,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_column="0"
             android:layout_weight="1"
-            android:background="@drawable/_gallery"/>
+            android:background="@drawable/_gallery"
+            />
 
         <ImageButton
             android:layout_width="170dp"
@@ -54,7 +57,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_column="0"
             android:layout_weight="1"
-            android:background="@drawable/_callendar"/>
+            android:background="@drawable/_callendar"
+            />
 
     </LinearLayout>
 
@@ -72,7 +76,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_column="1"
             android:layout_weight="1"
-            android:background="@drawable/_test"/>
+            android:background="@drawable/_test"
+            />
 
         <ImageButton
             android:layout_width="170dp"
@@ -82,7 +87,8 @@
             android:layout_column="1"
             android:background="@drawable/_translate"
             android:layout_rowWeight="0"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            />
 
     </LinearLayout>
 

@@ -168,8 +168,8 @@ public class Tests extends Activity
 
 
         //Другой экран
-        translate_next = (ImageButton) findViewById(R.id.date_next);
-        translate_previous = (ImageButton) findViewById(R.id.date_back);
+        translate_next = (ImageButton) findViewById(R.id.translate_next);
+        translate_previous = (ImageButton) findViewById(R.id.translate_back);
         translate_previous.setOnClickListener(new CounterInfo());
         translate_next.setOnClickListener(new CounterInfo());
 
@@ -254,42 +254,30 @@ public class Tests extends Activity
 
                 if (tmp.equals(trans))
                 {
-                    goodJob.setText("Good Job!");
                     nameValuePairs.add(new BasicNameValuePair("id", translate_ID));
                     nameValuePairs.add(new BasicNameValuePair("mark", String.valueOf(translate_cells + 1)));
-                } else
-                {
-                    goodJob.setText("Looser");
-                    nameValuePairs.add(new BasicNameValuePair("id", translate_ID));
-                    nameValuePairs.add(new BasicNameValuePair("mark", String.valueOf(translate_cells)));
-                }
-                /*if (date[randDate].isChecked())
-                {
-                    nameValuePairs.add(new BasicNameValuePair("id", translate_ID));
-                    nameValuePairs.add(new BasicNameValuePair("mark", String.valueOf(translate_cells + 1)));
+
+                    try
+                    {
+                        HttpClient httpClient = new DefaultHttpClient();
+                        HttpPost httpPost = new HttpPost("http://remember-everything.ml/connections/update_progress_translate.php");
+                        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                        HttpResponse response = httpClient.execute(httpPost);
+                        HttpEntity entity = response.getEntity();
+                        is = entity.getContent();
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    new checkTestsAvailable_2().execute();
+
                 }
                 else
                 {
-                    nameValuePairs.add(new BasicNameValuePair("id", translate_ID));
-                    nameValuePairs.add(new BasicNameValuePair("mark", String.valueOf(translate_cells)));
-                }*/
-                try
-                {
-                    HttpClient httpClient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost("http://remember-everything.ml/connections/update_progress_translate.php");
-                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                    HttpResponse response = httpClient.execute(httpPost);
-                    HttpEntity entity = response.getEntity();
-                    is = entity.getContent();
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
+                    goodJob.setText("Try again or complete another one test");
                 }
-
-                //if (NotesQuantity != 1)
-                new checkTestsAvailable().execute();
-                //else
-                //globalCleanDate();
             }
         });
     }
@@ -338,7 +326,7 @@ public class Tests extends Activity
                 //дата
                 case R.id.translate_next:
                 {
-                    if (_INT_translate_counter < NotesQuantity - 1)
+                    if (_INT_translate_counter < NotesQuantity_2 - 1)
                     {
                         _INT_translate_counter++;
                         new getTranslates().execute();
@@ -904,7 +892,9 @@ public class Tests extends Activity
     {
         for (int i = 0; i < letters.length; i++)
             if (letters[i] == '_')
+            {
                 return i;
+            }
         return -1;
     }
 
@@ -936,10 +926,13 @@ public class Tests extends Activity
         for (int k = 0; k < length; k++)
             for (int j = k + 1; j < length; j++)
                 if (indexAll[k] == indexAll[j] || tmp[indexAll[k]] == ' ')
+                {
                     do
                     {
                         indexAll[k] = rand.nextInt(length);
-                    } while (indexAll[k] == indexAll[j] || tmp[indexAll[k]] == ' ');
+                    }
+                    while (indexAll[k] == indexAll[j] || tmp[indexAll[k]] == ' ');
+                }
 
         for (int i = 0; i < length; i++)
             buttons[i].setText(String.valueOf(tmp[indexAll[i]]));
@@ -966,10 +959,13 @@ public class Tests extends Activity
         for (int k = 0; k < 4; k++)
             for (int j = k + 1; j < 4; j++)
                 if (indexFour[k] == indexFour[j] || tmp[indexFour[k]] == ' ')
+                {
                     do
                     {
                         indexFour[k] = rand.nextInt(length);
-                    } while (indexFour[k] == indexFour[j] || tmp[indexFour[k]] == ' ');
+                    }
+                    while (indexFour[k] == indexFour[j] || tmp[indexFour[k]] == ' ');
+                }
 
         for (int i = 0; i < 4; i++)
             buttons[i].setText(String.valueOf(tmp[indexFour[i]]));
@@ -995,10 +991,13 @@ public class Tests extends Activity
         for (int k = 0; k < 6; k++)
             for (int j = k + 1; j < 6; j++)
                 if (indexSix[k] == indexSix[j] || tmp[indexSix[k]] == ' ')
+                {
                     do
                     {
                         indexSix[k] = rand.nextInt(length);
-                    } while (indexSix[k] == indexSix[j] || tmp[indexSix[k]] == ' ');
+                    }
+                    while (indexSix[k] == indexSix[j] || tmp[indexSix[k]] == ' ');
+                }
 
         for (int i = 0; i < 6; i++)
             buttons[i].setText(String.valueOf(tmp[indexSix[i]]));
@@ -1024,10 +1023,13 @@ public class Tests extends Activity
         for (int k = 0; k < 8; k++)
             for (int j = k + 1; j < 8; j++)
                 if (indexEight[k] == indexEight[j] || tmp[indexEight[k]] == ' ')
+                {
                     do
                     {
                         indexEight[k] = rand.nextInt(length);
-                    } while (indexEight[k] == indexEight[j] || tmp[indexEight[k]] == ' ');
+                    }
+                    while (indexEight[k] == indexEight[j] || tmp[indexEight[k]] == ' ');
+                }
 
         for (int i = 0; i < 8; i++)
             buttons[i].setText(String.valueOf(tmp[indexEight[i]]));
@@ -1049,18 +1051,22 @@ public class Tests extends Activity
         char[] char_tmp = tmp.toCharArray();
         for (int i = 0; i < length; i++)
             if (char_tmp[i] == '_')
+            {
                 check = false;
+            }
 
-        if (check == true)
+        if (check)
         {
             if (tmp.equals(trans))
             {
                 //goodJob.setText("Good Job!");
-            } else
+            }
+            else
             {
                 //goodJob.setText("Looser");
             }
-        } else
+        }
+        else
         {
             goodJob.setText("");
         }
@@ -1079,14 +1085,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[0], '_');
                         press[0] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[0].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[0] = true;
                         pos[0] = position;
                     }
@@ -1097,14 +1106,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[1], '_');
                         press[1] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[1].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[1] = true;
                         pos[1] = position;
                     }
@@ -1115,14 +1127,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[2], '_');
                         press[2] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[2].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[2] = true;
                         pos[2] = position;
                     }
@@ -1133,14 +1148,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[3], '_');
                         press[3] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[3].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[3] = true;
                         pos[3] = position;
                     }
@@ -1151,14 +1169,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[4], '_');
                         press[4] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[4].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[4] = true;
                         pos[4] = position;
                     }
@@ -1169,14 +1190,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[5], '_');
                         press[5] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[5].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[5] = true;
                         pos[5] = position;
                     }
@@ -1187,14 +1211,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[6], '_');
                         press[6] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[6].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[6] = true;
                         pos[6] = position;
                     }
@@ -1205,14 +1232,17 @@ public class Tests extends Activity
                     {
                         tmp_trans = replaceCharAt(tmp_trans, pos[7], '_');
                         press[7] = false;
-                    } else
+                    }
+                    else
                     {
                         letters = tmp_trans.toCharArray();
                         position = FindPosition(letters);
                         lett = String.valueOf(buttons[7].getText());
                         tmp_trans = replaceCharAt(tmp_trans, position, lett.charAt(0));
                         if (tmp_trans.length() == length)
+                        {
                             Check(tmp_trans);
+                        }
                         press[7] = true;
                         pos[7] = position;
                     }
@@ -1259,7 +1289,8 @@ public class Tests extends Activity
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -1276,7 +1307,8 @@ public class Tests extends Activity
                 is.close();
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -1319,11 +1351,13 @@ public class Tests extends Activity
                 {
                     new getTranslates().execute();
 
-                } else
+                }
+                else
                 {
                     globalCleanTranslate();
                 }
-            } catch (
+            }
+            catch (
                     Exception e
                     )
 
@@ -1361,7 +1395,8 @@ public class Tests extends Activity
                 //read content
                 is = httpEntity.getContent();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Log.e("log_tag", "Connection error " + e.toString());
             }
@@ -1378,7 +1413,8 @@ public class Tests extends Activity
                 is.close();
                 result = sb.toString();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error parsing data " + e.toString());
@@ -1447,7 +1483,8 @@ public class Tests extends Activity
                         }
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // TODO: handle exception
                 Log.e("log_tag", "Error! " + e.toString());
