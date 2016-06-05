@@ -332,7 +332,7 @@ public class Tests extends Activity
                         for (int i = 0; i < 8; i++)
                             buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
                         for (int i = 0; i < 8; i++)
-                            buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
+                            press[i] = false;
                         for (int i = 0; i < 8; i++)
                             buttons[i].setVisibility(View.INVISIBLE);
                         new getTranslates().execute();
@@ -348,6 +348,8 @@ public class Tests extends Activity
                         _INT_translate_counter--;
                         for (int i = 0; i < 8; i++)
                             buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
+                        for (int i = 0; i < 8; i++)
+                            press[i] = false;
                         for (int i = 0; i < 8; i++)
                             buttons[i].setVisibility(View.INVISIBLE);
                         new getTranslates().execute();
