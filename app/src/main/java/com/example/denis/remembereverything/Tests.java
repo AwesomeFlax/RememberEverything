@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -166,19 +167,16 @@ public class Tests extends Activity
         tabs.setCurrentTab(0);
         //event.setText(eventText);
 
-
         //Другой экран
         translate_next = (ImageButton) findViewById(R.id.translate_next);
         translate_previous = (ImageButton) findViewById(R.id.translate_back);
         translate_previous.setOnClickListener(new CounterInfo());
         translate_next.setOnClickListener(new CounterInfo());
 
-
         test = (TextView) findViewById(R.id.textView);
         tv_words = (TextView) findViewById(R.id.textView2);
         tv_trans = (TextView) findViewById(R.id.textView3);
         goodJob = (TextView) findViewById(R.id.textView4);
-
 
         buttons[0] = (TextView) findViewById(R.id.tv_1);
         buttons[1] = (TextView) findViewById(R.id.tv_2);
@@ -307,6 +305,7 @@ public class Tests extends Activity
                     if (_INT_date_counter < NotesQuantity - 1)
                     {
                         _INT_date_counter++;
+                        //new checkTestsAvailable().execute();
                         new getDates().execute();
                     }
                     break;
@@ -318,6 +317,7 @@ public class Tests extends Activity
                     if (_INT_date_counter > 0)
                     {
                         _INT_date_counter--;
+                        //new checkTestsAvailable().execute();
                         new getDates().execute();
                     }
                     break;
@@ -329,12 +329,16 @@ public class Tests extends Activity
                     if (_INT_translate_counter < NotesQuantity_2 - 1)
                     {
                         _INT_translate_counter++;
+                        // new checkTestsAvailable_2().execute();
+
                         for (int i = 0; i < 8; i++)
+                        {
                             buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
-                        for (int i = 0; i < 8; i++)
                             press[i] = false;
-                        for (int i = 0; i < 8; i++)
                             buttons[i].setVisibility(View.INVISIBLE);
+                            // чистить фразу
+                        }
+
                         new getTranslates().execute();
                     }
                     break;
@@ -346,12 +350,15 @@ public class Tests extends Activity
                     if (_INT_translate_counter > 0)
                     {
                         _INT_translate_counter--;
+                        //new checkTestsAvailable_2().execute();
+
                         for (int i = 0; i < 8; i++)
+                        {
                             buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
-                        for (int i = 0; i < 8; i++)
                             press[i] = false;
-                        for (int i = 0; i < 8; i++)
                             buttons[i].setVisibility(View.INVISIBLE);
+                        }
+
                         new getTranslates().execute();
                     }
                     break;
@@ -895,9 +902,7 @@ public class Tests extends Activity
 
     public static String replaceCharAt(String s, int pos, char c)
     {
-
         return s.substring(0, pos) + c + s.substring(pos + 1);
-
     }
 
     int FindPosition(char[] letters)
@@ -949,17 +954,18 @@ public class Tests extends Activity
         {
             indexAll[i] = rand.nextInt(length);
             if (i > 0)
+            {
                 for (int j = 0; j < i; j++)
                     if (indexAll[i] == indexAll[j])
                     {
                         i--;
                         break;
                     }
+            }
         }
 
         for (int i = 0; i < length; i++)
             buttons[i].setText(String.valueOf(tmp[indexAll[i]]));
-
 
 
         tmp_trans = replaceCharAt(trans, indexAll[0], '_');
@@ -995,12 +1001,14 @@ public class Tests extends Activity
         {
             indexFour[i] = rand.nextInt(length);
             if (i > 0)
+            {
                 for (int j = 0; j < i; j++)
                     if (indexFour[i] == indexFour[j])
                     {
                         i--;
                         break;
                     }
+            }
         }
         for (int i = 0; i < 4; i++)
             buttons[i].setText(String.valueOf(tmp[indexFour[i]]));
@@ -1038,12 +1046,14 @@ public class Tests extends Activity
         {
             indexSix[i] = rand.nextInt(length);
             if (i > 0)
+            {
                 for (int j = 0; j < i; j++)
                     if (indexSix[i] == indexSix[j])
                     {
                         i--;
                         break;
                     }
+            }
         }
 
         for (int i = 0; i < 6; i++)
@@ -1082,12 +1092,14 @@ public class Tests extends Activity
         {
             indexEight[i] = rand.nextInt(length);
             if (i > 0)
+            {
                 for (int j = 0; j < i; j++)
                     if (indexEight[i] == indexEight[j])
                     {
                         i--;
                         break;
                     }
+            }
         }
 
         for (int i = 0; i < 8; i++)
@@ -1331,11 +1343,11 @@ public class Tests extends Activity
     {
         translate_next.setVisibility(View.INVISIBLE);
         translate_previous.setVisibility(View.INVISIBLE);
-        FrameLayout main_part_date = (FrameLayout) findViewById(R.id.main_part_date);
-        main_part_date.setVisibility(View.INVISIBLE);
+        RelativeLayout main_part_translate = (RelativeLayout) findViewById(R.id.main_part_translate);
+        main_part_translate.setVisibility(View.INVISIBLE);
 
-        LinearLayout tab3 = (LinearLayout) findViewById(R.id.tab3);
-        tab3.setBackground(getResources().getDrawable(R.drawable.relax));
+        LinearLayout tab2 = (LinearLayout) findViewById(R.id.tab2);
+        tab2.setBackground(getResources().getDrawable(R.drawable.relax));
     }
 
     class checkTestsAvailable_2 extends AsyncTask<String, String, Void>
@@ -1422,10 +1434,18 @@ public class Tests extends Activity
                     }
                 }
 
+                //Toast.makeText(getApplicationContext(), String.valueOf(NotesQuantity_2), Toast.LENGTH_SHORT).show();
+
                 if (NotesQuantity_2 > 0)
                 {
-                    new getTranslates().execute();
+                    for (int i = 0; i < 8; i++)
+                    {
+                        buttons[i].setBackground(getResources().getDrawable(R.drawable.let_btn));
+                        press[i] = false;
+                        buttons[i].setVisibility(View.INVISIBLE);
+                    }
 
+                    new getTranslates().execute();
                 }
                 else
                 {
@@ -1512,15 +1532,21 @@ public class Tests extends Activity
                 //подсчет количества записей
                 for (int i = 0; i < Jarray.length(); i++)
                 {
-                    //_INT_translate_quantity = 0;
-
                     JSONObject Jasonobject_translate;
                     Jasonobject_translate = Jarray.getJSONObject(i);
                     String name = Jasonobject_translate.getString("user");
 
+                    int k3 = Integer.valueOf(Jasonobject_translate.getString("check_"));
+                    long k2 = Integer.valueOf(Jasonobject_translate.getString("check_date"));
+                    k2 = k2 * 1000;
+                    long k1 = getDate();
+
                     if (user_name.equalsIgnoreCase(name))
                     {
-                        NotesQuantity_2++;
+                        if (((k1 - k2) > 172800000) && (k3 < 4))
+                        {
+                            NotesQuantity_2++;
+                        }
                     }
                 }
 
@@ -1608,8 +1634,6 @@ public class Tests extends Activity
 
             //Toast.makeText(getApplicationContext(), trans, Toast.LENGTH_SHORT).show();
             //Toast.makeText(getApplicationContext(), words, Toast.LENGTH_SHORT).show();
-
-
 
         }
     }

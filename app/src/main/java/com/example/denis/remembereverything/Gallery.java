@@ -78,7 +78,6 @@ public class Gallery extends Activity
     Object[] flags = new Object[10];
     ImageView[] cells_array = new ImageView[12];
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
