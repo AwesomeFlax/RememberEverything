@@ -9,7 +9,7 @@ That's will allow you to login with your account from different devices and cont
 
 ## Getting Started
 
-Get project, run it with Android Studion 2,0 or above and compile it for your Android device. Android device'ssystem has to be 4.0+.
+Get project, run it with Android Studion 2,0 or above and compile it for your Android device. Android device's system has to be 4.0+.
 
 ### Requirements
 ```
